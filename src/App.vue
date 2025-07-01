@@ -1,10 +1,11 @@
+<!-- src/App.vue -->
 <script setup lang="ts">
-import Todos from './components/Todos.vue'
+import SegurimaxHeader from '@/components/SegurimaxHeader.vue'
+import Home from '@/components/Home.vue'
 </script>
 
 <template>
-  <main>
-    <Todos />
-  </main>
+  <SegurimaxHeader />
+  <router-view />
+  <Home /> <!-- Home ya sólo renderiza hero, productos, etc. -->
 </template>
-

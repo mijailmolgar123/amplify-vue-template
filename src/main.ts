@@ -1,9 +1,17 @@
-import "./assets/main.css";
-import { createApp } from "vue";
-import App from "./App.vue";
-import { Amplify } from "aws-amplify";
-import outputs from "../amplify_outputs.json";
+// src/main.ts
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
 
-Amplify.configure(outputs);
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'        // ya carga todo el JS de Bootstrap
 
-createApp(App).mount("#app");
+import '@/assets/main.css'
+import { Amplify } from 'aws-amplify'
+import outputs from '../amplify_outputs.json'
+
+Amplify.configure(outputs)
+
+const app = createApp(App)
+app.use(router)
+app.mount('#app')
