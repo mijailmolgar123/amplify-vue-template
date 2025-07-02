@@ -88,7 +88,6 @@
 </template>
 
 <script setup lang="ts">
-import SegurimaxHeader from '@/components/SegurimaxHeader.vue'
 import FeaturedProducts from '@/components/FeaturedProducts.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import { reactive, toRefs } from 'vue'
