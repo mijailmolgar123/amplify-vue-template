@@ -18,6 +18,9 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "types": ["vite/client"],      // <- clave para import.meta y assets
+    "jsx": "preserve",
+    "skipLibCheck": true
   }
 }
