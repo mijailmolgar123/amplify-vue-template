@@ -32,6 +32,7 @@
     "aws-cdk-lib": "^2.137.0",
     "constructs": "^10.3.0",
     "esbuild": "^0.20.2",
+    "jest": "^24.8.0",
     "npm-run-all2": "^6.1.2",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",

@@ -4,14 +4,13 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="@/assets/logo-segurimax.png" alt="Logo" width="40" height="40" class="me-2 rounded-circle" />
-                <span class="fw-bold fs-4 text-white">Segurimax</span>
+                <span class="fw-bold fs-4 text-white">Segurimax Peru</span>
             </a>
             <div class="navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link text-white" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#destacados">Productos destacados</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#empresa">Empresa</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#productos">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#destacados">Destacados</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#clientes">Clientes</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="#contacto">Contacto</a></li>
                 </ul>
