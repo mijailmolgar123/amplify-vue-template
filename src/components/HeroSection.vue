@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-section">
+  <section id="inicio" class="hero-section">
     <div class="overlay"></div>
     <div class="hero-content container text-center">
       <h1 class="display-4 fw-bold mb-3">
@@ -7,12 +7,12 @@
         <span class="highlight">Clase Mundial</span>
       </h1>
       <p class="lead mb-4">
-        Segurimax es líder en implementos de seguridad industrial con más de 15 años de experiencia.
+        Segurimax es líder en implementos de seguridad industrial con más de 5 años de experiencia.
       </p>
       <div class="d-flex flex-wrap justify-content-center gap-3">
-        <a href="#productos" class="btn btn-primary btn-lg">Ver Catálogo</a>
+        <a href="#destacados" class="btn btn-primary btn-lg">Ver Catálogo</a>
         <button class="btn btn-outline-light btn-lg"
-                @click="$refs.formContacto.scrollIntoView({ behavior: 'smooth' })">
+                @click="scrollToContacto">
           Solicitar Cotización
         </button>
       </div>
@@ -21,7 +21,10 @@
 </template>
 
 <script setup>
-// No hace falta lógica aquí
+function scrollToContacto() {
+  const el = document.getElementById('contacto')
+  if (el) el.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <style scoped>

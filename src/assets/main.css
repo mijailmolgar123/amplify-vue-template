@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Scroll suave para anclas */
+html {
+  scroll-behavior: smooth; /* MDN */
+}
+
+/* Altura aproximada de tu navbar (ajústala si cambia) */
+:root { --nav-h: 72px; }
+
+html {
+  scroll-behavior: smooth;       /* animación suave */
+  scroll-padding-top: 76px;      /* altura aprox. del navbar fijo */
+}
+
+section[id], [id] {
+  scroll-margin-top: 76px;       /* respaldo para navegadores que usan el destino */
+}
+
+/* Si el header en móvil es más alto, ajusta aquí */
+@media (max-width: 991.98px) {
+  html { scroll-padding-top: 86px; }
+  section[id], [id] { scroll-margin-top: 86px; }
+}
+

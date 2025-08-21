@@ -11,7 +11,7 @@
         <div
           v-for="product in products"
           :key="product.id"
-          class="col-12 col-sm-6 col-md-4 col-lg-3"
+          class="col-6 col-sm-6 col-md-4 col-lg-3"
         >
           <div class="card h-100 shadow-sm border-0">
             <div class="product-figure">
@@ -51,11 +51,11 @@ interface Product {
 // Imagenes desde /src/assets/products (con .href para convertir a string)
 const imgBotiquin = new URL('@/assets/products/Botiquin.png', import.meta.url).href
 const imgCanoa    = new URL('@/assets/products/Camilla de Rescate tipo canoa.jpg', import.meta.url).href
-const imgGuantes  = new URL('@/assets/products/Guantes de seguridad multiflex.jpeg', import.meta.url).href
+const imgGuantes  = new URL('@/assets/products/Guantes de seguridad multiflex.png', import.meta.url).href
 const imgAntid    = new URL('@/assets/products/Kit antiderrame implementado.png', import.meta.url).href
 const imgLavaojos = new URL('@/assets/products/Lavaojos portatil Haws Avlis LP075.jpg', import.meta.url).href
 const imgLente    = new URL('@/assets/products/Lente de seguridad Sierra Elite - MSA.jpg', import.meta.url).href
-const imgResp     = new URL('@/assets/products/Respirador de media cara de silicona serie 7500 - 3M.jpeg', import.meta.url).href
+const imgResp     = new URL('@/assets/products/Respirador de media cara de silicona serie 7500 - 3M.png', import.meta.url).href
 const imgTyvek    = new URL('@/assets/products/Traje de seguridad desechable tipo TYVECK - Clute.jpg', import.meta.url).href
 
 const products = ref<Product[]>([

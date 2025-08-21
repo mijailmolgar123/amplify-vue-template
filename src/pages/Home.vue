@@ -22,7 +22,7 @@
                             <div class="card-body">
                                 <div class="bg-success text-white rounded-circle mx-auto mb-3"
                                     style="width:4rem; height:4rem; display:flex; align-items:center; justify-content:center;">
-                                    <span class="fs-4 fw-bold">15+</span>
+                                    <span class="fs-4 fw-bold">5+</span>
                                 </div>
                                 <h5 class="card-title fw-bold">Años de Experiencia</h5>
                                 <p class="card-text text-secondary">Liderando el mercado de seguridad industrial</p>
@@ -34,7 +34,7 @@
                             <div class="card-body">
                                 <div class="bg-success text-white rounded-circle mx-auto mb-3"
                                     style="width:4rem; height:4rem; display:flex; align-items:center; justify-content:center;">
-                                    <span class="fs-4 fw-bold">500+</span>
+                                    <span class="fs-4 fw-bold">100+</span>
                                 </div>
                                 <h5 class="card-title fw-bold">Empresas Clientes</h5>
                                 <p class="card-text text-secondary">Confían en nuestros productos y servicios</p>
@@ -59,17 +59,18 @@
 
         <section id="clientes" class="py-5 bg-white">
             <!-- Nuestros Clientes (con fondo gris y ancho completo) -->
-            <div class="bg-light py-5"> <!-- fondo gris claro -->
+             <div class="container">
+             <!-- fondo gris claro -->
                 <div class="container-fluid"> <!-- ocupa todo el ancho -->
                 <div class="text-center mb-4">
                     <h2 class="fw-bold">Nuestros Clientes</h2>
                 </div>
 
                 <!-- Grid responsivo que llena el ancho y centra vertical/horizontal -->
-                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 align-items-center">
+                <div class="row row-cols-3 g-4 align-items-center">
                     <div v-for="(cli, i) in clientes" :key="'cli-'+i"
                         :class="['col d-flex justify-content-center', {
-                        'highlight-logo': cli.name === 'TECHINT SAC' || cli.name === 'COSAPI MINERA SAC'
+                        'highlight-logo': cli.name === 'TECHINT SAC' || cli.name === 'REPSOL' || cli.name === 'ANLGO AMERICAN'
                         }]">
                     <img :src="cli.src" :alt="cli.name" class="img-fluid cliente-logo" loading="lazy" />
                     </div>
@@ -78,8 +79,8 @@
             </div>
         </section>
 
-        <section id="Certificados" class="py-5 bg-white">
-            <div class="container">
+        <section id="certificados" class="py-5 bg-white">
+            <div class="bg-light py-5">
                 <!-- Certificados -->
                 <div class="text-center mb-4">
                 <h2 class="fw-bold">Certificados</h2>
@@ -159,9 +160,10 @@ import hodelpeLogo from '@/assets/LOGOTIPO_DE_HOMOLOGADO_-_CORPORACION_HODELPE_S
 
 import techintLogo from '@/assets/clients/techint.png'
 import komatsuLogo from '@/assets/clients/komatsu.png'
-import cosapiLogo from '@/assets/clients/cosapi.png'
-import ferreyrosLogo from '@/assets/clients/ferreyros.jpeg'
+import ferreyrosLogo from '@/assets/clients/ferreyros.jpg'
 import zamineLogo from '@/assets/clients/zamine.png'
+import repsolLogo from '@/assets/clients/repsol.jpg'
+import angloamericanLogo from '@/assets/clients/angloamerican.png'
 
 const EMAIL_TO = 'segurimaxperu1@gmail.com'
 const WHATSAPP_PHONE = '51996665221'
@@ -196,9 +198,10 @@ const homologaciones = [
 const clientes = [
   { name: 'TECHINT SAC', src: techintLogo },
   { name: 'KOMATSU - MITSUI', src: komatsuLogo },
-  { name: 'COSAPI MINERA SAC', src: cosapiLogo },
+  { name: 'REPSOL SAC', src: repsolLogo },
   { name: 'FERREYROS', src: ferreyrosLogo },
-  { name: 'ZAMINE', src: zamineLogo }
+  { name: 'ZAMINE', src: zamineLogo },
+  { name: 'ANGLO AMERICAN', src: angloamericanLogo }
 ]
 
 function buildPlainText() {
@@ -280,7 +283,7 @@ const mailtoHref = computed(() => {
 @media (min-width: 992px) { /* lg */
   .cliente-logo { height: 84px; }
 }
-/* estilo destacado para Techint y Cosapi */
+/* estilo destacado para Techint y repsol */
 .highlight-logo .cliente-logo {
   height: 200px; /* más alto que los demás (72px por ejemplo) */
 }
