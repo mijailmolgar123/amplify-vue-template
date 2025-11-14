@@ -1,6 +1,6 @@
 <!-- src/components/FooterComponent.vue -->
 <template>
-  <footer class="mt-auto bg-dark text-white py-4">
+  <footer class="mt-auto parallax-footer text-white py-4">
     <div class="container">
       <div class="row gy-3">
         <div class="col-md-3">
@@ -49,8 +49,29 @@
 
 <style scoped>
 footer {
-  /* Aseguramos que el footer ocupe siempre el ancho completo */
   width: 100%;
+}
+.parallax-footer {
+  position: relative;
+  background:
+    linear-gradient(120deg, rgba(1, 19, 8, 0.9), rgba(3, 43, 24, 0.85)),
+    url('@/assets/fondo.png') center/cover fixed;
+}
+.parallax-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+.parallax-footer > .container,
+.parallax-footer h6,
+.parallax-footer p,
+.parallax-footer a,
+.parallax-footer ul,
+.parallax-footer hr {
+  position: relative;
+  z-index: 1;
 }
 footer a:hover {
   text-decoration: underline;

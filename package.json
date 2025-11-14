@@ -12,6 +12,7 @@
     "tw:init": "tailwindcss init -p"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "@popperjs/core": "^2.11.8",
     "aws-amplify": "^6.6.6",
     "bootstrap": "^5.3.7",

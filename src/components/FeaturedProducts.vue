@@ -25,7 +25,7 @@
             <div class="card-body d-flex flex-column">
               <h5 class="card-title fw-bold">{{ product.title }}</h5>
               <p class="card-text text-muted mb-4">{{ product.subtitle }}</p>
-              <a :href="product.link" class="mt-auto btn btn-success">
+              <a :href="product.link" class="mt-auto btn btn-pill btn-pill-primary">
                 Ver Detalles
               </a>
             </div>

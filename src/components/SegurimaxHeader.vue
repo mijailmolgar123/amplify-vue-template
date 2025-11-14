@@ -1,36 +1,57 @@
 <template>
-  <nav class="navbar navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#inicio">
-        <img src="@/assets/logo-segurimax.png" alt="Logo" width="40" height="40" class="me-2 squere" />
-        <span class="fw-bold fs-4 text-white">Segurimax Peru</span>
-      </a>
+  <header class="segurimax-header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a
+          class="navbar-brand d-flex align-items-center text-white"
+          href="#inicio"
+          @click.prevent="goTo('#inicio')"
+        >
+          <img src="@/assets/logo-segurimax.png" alt="Logo Segurimax" class="logo me-2" />
+          <div class="brand-copy">
+            <span class="fw-bold fs-4">Segurimax Peru</span>
+            <small class="text-uppercase">Soluciones integrales para tu operación</small>
+          </div>
+        </a>
 
-      <!-- Botón hamburguesa -->
-      <button class="navbar-toggler" type="button"
-              data-bs-toggle="offcanvas" data-bs-target="#mainMenu"
-              aria-controls="mainMenu" aria-label="Abrir menú">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainMenu"
+          aria-controls="mainMenu"
+          aria-expanded="false"
+          aria-label="Abrir navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <!-- Menú lateral -->
-      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="mainMenu" aria-labelledby="mainMenuLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="mainMenuLabel">Menú</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link text-white" href="#inicio"       @click.prevent="goTo('#inicio')">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#destacados"   @click.prevent="goTo('#destacados')">Productos destacados</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#empresa"      @click.prevent="goTo('#empresa')">Empresa</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#clientes"     @click.prevent="goTo('#clientes')">Clientes</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="#contacto"     @click.prevent="goTo('#contacto')">Contacto</a></li>
-           </ul>
+        <div class="collapse navbar-collapse" id="mainMenu">
+          <ul class="navbar-nav mx-auto mb-3 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#inicio" @click.prevent="goTo('#inicio')">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#destacados" @click.prevent="goTo('#destacados')">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#empresa" @click.prevent="goTo('#empresa')">Empresa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#clientes" @click.prevent="goTo('#clientes')">Clientes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contacto" @click.prevent="goTo('#contacto')">Contacto</a>
+            </li>
+          </ul>
+
+          <button class="btn btn-cta ms-lg-3" @click.prevent="goTo('#contacto')">
+            Solicitar Cotización
+          </button>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 </template>
 
 <script setup lang="ts">
@@ -38,22 +59,79 @@ function goTo(hash: string) {
   const target = document.querySelector(hash) as HTMLElement | null
   if (!target) return
 
-  const off = document.getElementById('mainMenu') // tu offcanvas
-  // si el offcanvas está abierto, espera a que se esconda para scrollear
-  if (off?.classList.contains('show')) {
-    // dispara el cierre
-    ;(off.querySelector('[data-bs-dismiss="offcanvas"]') as HTMLElement)?.click()
-    // da tiempo a que Bootstrap libere el body-scroll
-    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300)
-  } else {
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const collapse = document.getElementById('mainMenu')
+  if (collapse?.classList.contains('show')) {
+    const toggler = document.querySelector<HTMLButtonElement>('[data-bs-target="#mainMenu"]')
+    toggler?.click()
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 250)
+    return
   }
+
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 </script>
 
 <style scoped>
-.nav-link { font-weight: 500; transition: color .2s; }
-.nav-link:hover { color: #47d462; }
-nav.navbar { z-index: 1050; } /* un poco más que el default */
-:global(section[id]) { scroll-margin-top: 76px; }
+.segurimax-header {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  isolation: isolate;
+}
+.segurimax-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(120deg, rgba(1, 19, 8, 0.92), rgba(3, 43, 24, 0.78)),
+    url('@/assets/fondo.png') center/cover no-repeat;
+  background-attachment: fixed;
+  filter: brightness(0.9);
+}
+.navbar {
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  background: transparent;
+}
+.navbar-brand small {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.7);
+}
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: var(--brand-green, #4de894);
+}
+.btn-cta {
+  font-weight: 700;
+  color: #042413;
+  background: linear-gradient(120deg, #c1ff8c, #5ff0ae);
+  border-radius: 999px;
+  padding: 0.55rem 1.8rem;
+  border: none;
+  box-shadow: 0 12px 30px rgba(79, 239, 177, 0.35);
+}
+.btn-cta:hover {
+  color: #02160b;
+  box-shadow: 0 14px 35px rgba(79, 239, 177, 0.45);
+  transform: translateY(-1px);
+}
+.logo {
+  width: 52px;
+  height: auto;
+  display: block;
+}
+:global(section[id]) {
+  scroll-margin-top: 90px;
+}
 </style>

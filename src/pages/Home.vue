@@ -7,7 +7,7 @@
         <FeaturedProducts />
 
         <!-- Empresa Section -->
-        <section id="empresa" class="py-5 bg-light">
+        <section id="empresa" class="py-5 section-bg">
             <div class="container">
                 <div class="text-center mb-5">
                     <h2 class="fw-bold">Nuestra Empresa</h2>
@@ -58,29 +58,30 @@
         </section>
 
         <section id="clientes" class="py-5 bg-white">
-            <!-- Nuestros Clientes (con fondo gris y ancho completo) -->
+            <!-- Nuestros Socios (con fondo gris y ancho completo) -->
              <div class="container">
              <!-- fondo gris claro -->
                 <div class="container-fluid"> <!-- ocupa todo el ancho -->
                 <div class="text-center mb-4">
-                    <h2 class="fw-bold">Nuestros Clientes</h2>
+                    <h2 class="fw-bold">Nuestros Socios</h2>
                 </div>
 
                 <!-- Grid responsivo que llena el ancho y centra vertical/horizontal -->
                 <div class="row row-cols-3 g-4 align-items-center">
                     <div v-for="(cli, i) in clientes" :key="'cli-'+i"
-                        :class="['col d-flex justify-content-center', {
-                        'highlight-logo': cli.name === 'TECHINT SAC' || cli.name === 'REPSOL' || cli.name === 'ANLGO AMERICAN'
-                        }]">
-                    <img :src="cli.src" :alt="cli.name" class="img-fluid cliente-logo" loading="lazy" />
+                        class="col d-flex justify-content-center">
+                    <img :src="cli.src" :alt="cli.name"
+                         class="img-fluid cliente-logo"
+                         :class="`cliente-logo--${cli.size ?? 'md'}`"
+                         loading="lazy" />
                     </div>
                 </div>
                 </div>
             </div>
         </section>
 
-        <section id="certificados" class="py-5 bg-white">
-            <div class="bg-light py-5">
+        <section id="certificados" class="py-5 section-bg">
+            <div class="py-5">
                 <!-- Certificados -->
                 <div class="text-center mb-4">
                 <h2 class="fw-bold">Certificados</h2>
@@ -130,10 +131,10 @@
                     </div>
 
                     <div class="text-center mt-4 d-flex flex-wrap gap-2 justify-content-center">
-                        <button type="button" class="btn btn-success btn-lg px-4" @click="sendWhatsApp">
+                        <button type="button" class="btn btn-pill btn-pill-primary" @click="sendWhatsApp">
                         Enviar por WhatsApp
                         </button>
-                        <button type="button" class="btn btn-primary btn-lg px-4" @click="sendEmailGmail">
+                        <button type="button" class="btn btn-pill btn-pill-primary" @click="sendEmailGmail">
                         Enviar por Gmail
                         </button>
                     </div>
@@ -158,12 +159,12 @@ import { reactive, computed } from 'vue'
 import sgsLogo from '@/assets/logo_sgs-2.jpg'
 import hodelpeLogo from '@/assets/LOGOTIPO_DE_HOMOLOGADO_-_CORPORACION_HODELPE_SAC.jpg'
 
-import techintLogo from '@/assets/clients/techint.png'
-import komatsuLogo from '@/assets/clients/komatsu.png'
-import ferreyrosLogo from '@/assets/clients/ferreyros.jpg'
-import zamineLogo from '@/assets/clients/zamine.png'
-import repsolLogo from '@/assets/clients/repsol.jpg'
-import angloamericanLogo from '@/assets/clients/angloamerican.png'
+import threeMLogo from '@/assets/socios/3m-logo.png'
+import ansellLogo from '@/assets/socios/ansell-logo.png'
+import cluteLogo from '@/assets/socios/clute-logo.png'
+import deltaPlusLogo from '@/assets/socios/delta-plus-logo.png'
+import msaLogo from '@/assets/socios/msa-logo.png'
+import steelproLogo from '@/assets/socios/steelpro-logo.png'
 
 const EMAIL_TO = 'segurimaxperu1@gmail.com'
 const WHATSAPP_PHONE = '51996665221'
@@ -195,13 +196,21 @@ const homologaciones = [
   { src: hodelpeLogo, alt: 'Homologado HODELPE' }
 ]
 
-const clientes = [
-  { name: 'TECHINT SAC', src: techintLogo },
-  { name: 'KOMATSU - MITSUI', src: komatsuLogo },
-  { name: 'REPSOL SAC', src: repsolLogo },
-  { name: 'FERREYROS', src: ferreyrosLogo },
-  { name: 'ZAMINE', src: zamineLogo },
-  { name: 'ANGLO AMERICAN', src: angloamericanLogo }
+type ClienteLogoSize = 'sm' | 'md' | 'lg' | 'xl'
+
+type Cliente = {
+  name: string
+  src: string
+  size?: ClienteLogoSize
+}
+
+const clientes: Cliente[] = [
+  { name: '3M', src: threeMLogo, size: 'sm' },
+  { name: 'Ansell', src: ansellLogo, size: 'sm' },
+  { name: 'Clute', src: cluteLogo, size: 'sm' },
+  { name: 'Delta Plus', src: deltaPlusLogo, size: 'md' },
+  { name: 'MSA', src: msaLogo, size: 'md' },
+  { name: 'Steelpro', src: steelproLogo, size: 'md' }
 ]
 
 function buildPlainText() {
@@ -263,6 +272,29 @@ const mailtoHref = computed(() => {
     color: #047857;
     /* verde Segurimax */
 }
+
+.section-bg {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url('@/assets/fondo.png') center/cover fixed;
+  color: #fff;
+}
+.section-bg h2,
+.section-bg h3,
+.section-bg h5,
+.section-bg p {
+  color: #fff;
+}
+.section-bg .text-secondary {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.section-bg .card {
+  background-color: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.section-bg .bg-success {
+  background-color: var(--brand-green) !important;
+}
 /* Homologaciones: un poco más grandes */
 .homogen-logo {
   height: 200px;
@@ -270,22 +302,21 @@ const mailtoHref = computed(() => {
   object-fit: contain;
 }
 
-/* Clientes: tamaño mayor + responsive */
+/* Clientes: tamaños diferenciados + responsive */
 .cliente-logo {
-  height: 72px;
   max-width: 100%;
   object-fit: contain;
-  /* opcional: un look más uniforme
-  filter: grayscale(10%);
-  opacity: 0.95;
-  */
 }
-@media (min-width: 992px) { /* lg */
-  .cliente-logo { height: 84px; }
-}
-/* estilo destacado para Techint y repsol */
-.highlight-logo .cliente-logo {
-  height: 200px; /* más alto que los demás (72px por ejemplo) */
+.cliente-logo--sm { height: 60px; }
+.cliente-logo--md { height: 80px; }
+.cliente-logo--lg { height: 100px; }
+.cliente-logo--xl { height: 120px; }
+
+@media (min-width: 992px) {
+  .cliente-logo--sm { height: 70px; }
+  .cliente-logo--md { height: 95px; }
+  .cliente-logo--lg { height: 120px; }
+  .cliente-logo--xl { height: 150px; }
 }
 /* Botones del CTA */
 .btn-lg { min-width: 220px; }

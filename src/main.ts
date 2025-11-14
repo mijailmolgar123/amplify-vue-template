@@ -6,6 +6,7 @@ import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'        // ya carga todo el JS de Bootstrap
 
+import '@/assets/base.css'
 import '@/assets/main.css'
 import { Amplify } from 'aws-amplify'
 import outputs from '../amplify_outputs.json'
