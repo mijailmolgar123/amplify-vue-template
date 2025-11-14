@@ -2,7 +2,7 @@
   <nav class="navbar navbar-dark bg-dark sticky-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#inicio">
-        <img src="@/assets/logo-segurimax.png" alt="Logo" width="40" height="40" class="me-2 rounded-circle" />
+        <img src="@/assets/logo-segurimax.png" alt="Logo" width="40" height="40" class="me-2 squere" />
         <span class="fw-bold fs-4 text-white">Segurimax Peru</span>
       </a>
 
