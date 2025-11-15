@@ -275,7 +275,8 @@ const mailtoHref = computed(() => {
 
 .section-bg {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-              url('@/assets/fondo.png') center/cover fixed;
+              url('@/assets/fondo.png') center/cover no-repeat;
+  background-attachment: scroll, fixed;
   color: #fff;
 }
 .section-bg h2,
@@ -294,6 +295,11 @@ const mailtoHref = computed(() => {
 }
 .section-bg .bg-success {
   background-color: var(--brand-green) !important;
+}
+@media (max-width: 991.98px) {
+  .section-bg {
+    background-attachment: scroll, scroll;
+  }
 }
 /* Homologaciones: un poco más grandes */
 .homogen-logo {

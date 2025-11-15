@@ -1,7 +1,7 @@
 <template>
   <header class="segurimax-header">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container">
+    <nav class="navbar navbar-dark">
+      <div class="container align-items-center">
         <a
           class="navbar-brand d-flex align-items-center text-white"
           href="#inicio"
@@ -10,60 +10,86 @@
           <img src="@/assets/logo-segurimax.png" alt="Logo Segurimax" class="logo me-2" />
           <div class="brand-copy">
             <span class="fw-bold fs-4">Segurimax Peru</span>
-            <small class="text-uppercase">Soluciones integrales para tu operación</small>
+            <small class="text-uppercase">Soluciones integrales</small>
           </div>
         </a>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainMenu"
-          aria-controls="mainMenu"
-          aria-expanded="false"
-          aria-label="Abrir navegación"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainMenu">
-          <ul class="navbar-nav mx-auto mb-3 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#inicio" @click.prevent="goTo('#inicio')">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#destacados" @click.prevent="goTo('#destacados')">Productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#empresa" @click.prevent="goTo('#empresa')">Empresa</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#clientes" @click.prevent="goTo('#clientes')">Clientes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contacto" @click.prevent="goTo('#contacto')">Contacto</a>
+        <div class="primary-nav d-none d-xl-flex align-items-center ms-4 flex-grow-1">
+          <ul class="navbar-nav mb-0 flex-row gap-3">
+            <li class="nav-item" v-for="link in navLinks" :key="link.hash">
+              <a class="nav-link" :href="link.hash" @click.prevent="goTo(link.hash)">
+                {{ link.label }}
+              </a>
             </li>
           </ul>
+        </div>
 
-          <button class="btn btn-cta ms-lg-3" @click.prevent="goTo('#contacto')">
+        <div class="header-actions ms-auto d-flex align-items-center gap-2">
+          <button class="btn btn-cta d-none d-lg-inline-flex" @click.prevent="goTo('#contacto')">
             Solicitar Cotización
+          </button>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#menuOffcanvas"
+            aria-controls="menuOffcanvas"
+            aria-label="Abrir menú"
+          >
+            <span class="navbar-toggler-icon"></span>
           </button>
         </div>
       </div>
     </nav>
+
+    <div
+      class="offcanvas offcanvas-end text-bg-dark"
+      tabindex="-1"
+      id="menuOffcanvas"
+      aria-labelledby="menuOffcanvasLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="menuOffcanvasLabel">Menú</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Cerrar"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li class="nav-item" v-for="link in navLinks" :key="`offcanvas-${link.hash}`">
+            <a class="nav-link text-white" :href="link.hash" @click.prevent="goTo(link.hash)">
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+        <button class="btn btn-cta w-100 mt-4" @click.prevent="goTo('#contacto')">
+          Solicitar Cotización
+        </button>
+      </div>
+    </div>
   </header>
 </template>
 
 <script setup lang="ts">
+const navLinks = [
+  { label: 'Inicio', hash: '#inicio' },
+  { label: 'Productos', hash: '#destacados' },
+  { label: 'Empresa', hash: '#empresa' },
+  { label: 'Clientes', hash: '#clientes' },
+  { label: 'Contacto', hash: '#contacto' }
+]
+
 function goTo(hash: string) {
   const target = document.querySelector(hash) as HTMLElement | null
   if (!target) return
 
-  const collapse = document.getElementById('mainMenu')
-  if (collapse?.classList.contains('show')) {
-    const toggler = document.querySelector<HTMLButtonElement>('[data-bs-target="#mainMenu"]')
-    toggler?.click()
-    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 250)
+  const offcanvas = document.getElementById('menuOffcanvas')
+  if (offcanvas?.classList.contains('show')) {
+    ;(offcanvas.querySelector('[data-bs-dismiss="offcanvas"]') as HTMLElement)?.click()
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300)
     return
   }
 
@@ -86,13 +112,17 @@ function goTo(hash: string) {
   background:
     linear-gradient(120deg, rgba(1, 19, 8, 0.92), rgba(3, 43, 24, 0.78)),
     url('@/assets/fondo.png') center/cover no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll, fixed;
   filter: brightness(0.9);
 }
 .navbar {
   padding-top: 0.65rem;
   padding-bottom: 0.65rem;
   background: transparent;
+}
+.primary-nav .navbar-nav {
+  margin-left: auto;
+  margin-right: auto;
 }
 .navbar-brand small {
   display: block;
@@ -126,6 +156,10 @@ function goTo(hash: string) {
   box-shadow: 0 14px 35px rgba(79, 239, 177, 0.45);
   transform: translateY(-1px);
 }
+.header-actions .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.4);
+  border-width: 1px;
+}
 .logo {
   width: 52px;
   height: auto;
@@ -133,5 +167,13 @@ function goTo(hash: string) {
 }
 :global(section[id]) {
   scroll-margin-top: 90px;
+}
+@media (max-width: 991.98px) {
+  .segurimax-header::before {
+    background-attachment: scroll, scroll;
+  }
+  .primary-nav {
+    display: none !important;
+  }
 }
 </style>

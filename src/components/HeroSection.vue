@@ -80,7 +80,8 @@ onBeforeUnmount(() => {
   color: #fff;
   background:
     linear-gradient(120deg, rgba(1, 19, 8, 0.8), rgba(3, 43, 24, 0.6)),
-    url('@/assets/fondo.png') center/cover fixed;
+    url('@/assets/fondo.png') center/cover no-repeat;
+  background-attachment: scroll, fixed;
 }
 .hero-section::before {
   content: '';
@@ -139,6 +140,7 @@ onBeforeUnmount(() => {
 @media (max-width: 991.98px) {
   .hero-section {
     padding-top: 4rem;
+    background-attachment: scroll, scroll;
   }
   .hero-copy {
     padding-top: 5rem;

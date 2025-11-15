@@ -55,7 +55,8 @@ footer {
   position: relative;
   background:
     linear-gradient(120deg, rgba(1, 19, 8, 0.9), rgba(3, 43, 24, 0.85)),
-    url('@/assets/fondo.png') center/cover fixed;
+    url('@/assets/fondo.png') center/cover no-repeat;
+  background-attachment: scroll, fixed;
 }
 .parallax-footer::before {
   content: '';
@@ -75,5 +76,10 @@ footer {
 }
 footer a:hover {
   text-decoration: underline;
+}
+@media (max-width: 991.98px) {
+  .parallax-footer {
+    background-attachment: scroll, scroll;
+  }
 }
 </style>
