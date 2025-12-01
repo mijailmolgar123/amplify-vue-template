@@ -36,7 +36,7 @@
                                     style="width:4rem; height:4rem; display:flex; align-items:center; justify-content:center;">
                                     <span class="fs-4 fw-bold">100+</span>
                                 </div>
-                                <h5 class="card-title fw-bold">Empresas Clientes</h5>
+                                <h5 class="card-title fw-bold">Empresas Socias</h5>
                                 <p class="card-text text-secondary">Confían en nuestros productos y servicios</p>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
             </div>
         </section>
 
-        <section id="clientes" class="py-5 bg-white">
+        <section id="socios" class="py-5 bg-white">
             <!-- Nuestros Socios (con fondo gris y ancho completo) -->
              <div class="container">
              <!-- fondo gris claro -->
@@ -68,11 +68,11 @@
 
                 <!-- Grid responsivo que llena el ancho y centra vertical/horizontal -->
                 <div class="row row-cols-3 g-4 align-items-center">
-                    <div v-for="(cli, i) in clientes" :key="'cli-'+i"
+                    <div v-for="(cli, i) in socios" :key="'cli-'+i"
                         class="col d-flex justify-content-center">
                     <img :src="cli.src" :alt="cli.name"
-                         class="img-fluid cliente-logo"
-                         :class="`cliente-logo--${cli.size ?? 'md'}`"
+                         class="img-fluid socio-logo"
+                         :class="`socio-logo--${cli.size ?? 'md'}`"
                          loading="lazy" />
                     </div>
                 </div>
@@ -196,15 +196,15 @@ const homologaciones = [
   { src: hodelpeLogo, alt: 'Homologado HODELPE' }
 ]
 
-type ClienteLogoSize = 'sm' | 'md' | 'lg' | 'xl'
+type SocioLogoSize = 'sm' | 'md' | 'lg' | 'xl'
 
-type Cliente = {
+type Socio = {
   name: string
   src: string
-  size?: ClienteLogoSize
+  size?: SocioLogoSize
 }
 
-const clientes: Cliente[] = [
+const socios: Socio[] = [
   { name: '3M', src: threeMLogo, size: 'sm' },
   { name: 'Ansell', src: ansellLogo, size: 'sm' },
   { name: 'Clute', src: cluteLogo, size: 'sm' },
@@ -237,7 +237,7 @@ function sendWhatsApp() {
 }
 
 function sendEmailGmail() {
-  const subject = `Consulta web – ${form.nombre || 'Cliente'}`
+  const subject = `Consulta web – ${form.nombre || 'Socio'}`
   const body = buildPlainText()
   // Gmail web compose
   const gmailUrl =
@@ -248,9 +248,9 @@ function sendEmailGmail() {
   window.open(gmailUrl, '_blank')
 }
 
-// Fallback: cliente de correo por defecto (Outlook/Apple Mail/etc.)
+// Fallback: Socio de correo por defecto (Outlook/Apple Mail/etc.)
 const mailtoHref = computed(() => {
-  const subject = `Consulta web – ${form.nombre || 'Cliente'}`
+  const subject = `Consulta web – ${form.nombre || 'Socio'}`
   const body = buildPlainText()
   return `mailto:${EMAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 })
@@ -308,21 +308,21 @@ const mailtoHref = computed(() => {
   object-fit: contain;
 }
 
-/* Clientes: tamaños diferenciados + responsive */
-.cliente-logo {
+/* Socios: tamaños diferenciados + responsive */
+.socio-logo {
   max-width: 100%;
   object-fit: contain;
 }
-.cliente-logo--sm { height: 60px; }
-.cliente-logo--md { height: 80px; }
-.cliente-logo--lg { height: 100px; }
-.cliente-logo--xl { height: 120px; }
+.socio-logo--sm { height: 60px; }
+.socio-logo--md { height: 80px; }
+.socio-logo--lg { height: 100px; }
+.socio-logo--xl { height: 120px; }
 
 @media (min-width: 992px) {
-  .cliente-logo--sm { height: 70px; }
-  .cliente-logo--md { height: 95px; }
-  .cliente-logo--lg { height: 120px; }
-  .cliente-logo--xl { height: 150px; }
+  .socio-logo--sm { height: 70px; }
+  .socio-logo--md { height: 95px; }
+  .socio-logo--lg { height: 120px; }
+  .socio-logo--xl { height: 150px; }
 }
 /* Botones del CTA */
 .btn-lg { min-width: 220px; }

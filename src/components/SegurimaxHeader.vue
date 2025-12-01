@@ -78,7 +78,7 @@ const navLinks = [
   { label: 'Inicio', hash: '#inicio' },
   { label: 'Productos', hash: '#destacados' },
   { label: 'Empresa', hash: '#empresa' },
-  { label: 'Clientes', hash: '#clientes' },
+  { label: 'Socios', hash: '#socios' },
   { label: 'Contacto', hash: '#contacto' }
 ]
 
