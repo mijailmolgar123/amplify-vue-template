@@ -746,7 +746,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #0f1f43, #1a3c7d)',
     icon: '🚧',
     slaHours: 34,
-    image: new URL('../assets/products/epcs/cono_seguridad_naranja_90cm.webp', import.meta.url).href,
+    image: new URL('../assets/products/epcs/cono_seguridad_naranja_90cm.jpg', import.meta.url).href,
   },
   {
     id: 22,
@@ -778,7 +778,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #0f1f43, #1a3c7d)',
     icon: '🚧',
     slaHours: 32,
-    image: new URL('../assets/products/epcs/barra_retractil_rojo_blanco.webp', import.meta.url).href,
+    image: new URL('../assets/products/epcs/barra_retractil_rojo_blanco.jpg', import.meta.url).href,
   },
   {
     id: 24,
@@ -842,7 +842,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #2a1307, #53240f)',
     icon: '🗑️',
     slaHours: 20,
-    image: new URL('../assets/products/kitchenette/bolsa_basura_cilindro_220x2_negro.webp', import.meta.url).href,
+    image: new URL('../assets/products/kitchenette/bolsa_basura_cilindro_220x2_negro.jpg', import.meta.url).href,
   },
 ]
 
