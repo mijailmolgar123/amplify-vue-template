@@ -457,7 +457,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '🕶️',
     slaHours: 32,
-    image: new URL('../assets/products/epps/lente_steelpro_turbine.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/lente_steelpro_turbine.jpg', import.meta.url).href,
   },
   {
     id: 4,
@@ -489,7 +489,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '🧤',
     slaHours: 34,
-    image: new URL('../assets/products/epps/guante_ve713_deltaplus.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/guante_ve713_deltaplus.jpg', import.meta.url).href,
   },
   {
     id: 6,
@@ -505,7 +505,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '🎧',
     slaHours: 30,
-    image: new URL('../assets/products/epps/orejera_peltor_h10a_30db_3m.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/orejera_peltor_h10a_30db_3m.jpg', import.meta.url).href,
   },
   {
     id: 7,
@@ -522,7 +522,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '😷',
     slaHours: 28,
-    image: new URL('../assets/products/epps/respirador_media_cara_7503_3m.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/respirador_media_cara_7503_3m.jpg', import.meta.url).href,
   },
   {
     id: 8,
@@ -538,7 +538,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '😷',
     slaHours: 28,
-    image: new URL('../assets/products/epps/respirador_media_cara_6300_3m.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/respirador_media_cara_6300_3m.jpg', import.meta.url).href,
   },
   {
     id: 9,
@@ -554,7 +554,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '⛑️',
     slaHours: 26,
-    image: new URL('../assets/products/epps/casco_blanco_msa_jockey.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/casco_blanco_msa_jockey.jpg', import.meta.url).href,
   },
   {
     id: 10,
@@ -586,7 +586,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '⛑️',
     slaHours: 26,
-    image: new URL('../assets/products/epps/casco_blanco_3m_jockey.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/casco_blanco_3m_jockey.jpg', import.meta.url).href,
   },
   {
     id: 12,
@@ -634,7 +634,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '⛑️',
     slaHours: 26,
-    image: new URL('../assets/products/epps/casco_azul_forte_steelpro_jockey.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/casco_azul_forte_steelpro_jockey.jpg', import.meta.url).href,
   },
   {
     id: 15,
@@ -682,7 +682,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #112b16, #23592e)',
     icon: '🧤',
     slaHours: 30,
-    image: new URL('../assets/products/epps/guante_nitrilo_g60_kleenguard.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epps/guante_nitrilo_g60_kleenguard.jpg', import.meta.url).href,
   },
   {
     id: 18,
@@ -698,7 +698,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #221f05, #4e430b)',
     icon: '👷',
     slaHours: 40,
-    image: new URL('../assets/products/ropa-industrial/casaca_termica_naranja_plomo_termoferlex_reflectiva.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/ropa-industrial/casaca_termica_naranja_plomo_termoferlex_reflectiva.jpg', import.meta.url).href,
   },
   {
     id: 19,
@@ -714,7 +714,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #221f05, #4e430b)',
     icon: '👷',
     slaHours: 40,
-    image: new URL('../assets/products/ropa-industrial/uniforme_drill_naranja_plomo_reflectivo.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/ropa-industrial/uniforme_drill_naranja_plomo_reflectivo.jpg', import.meta.url).href,
   },
   {
     id: 20,
@@ -730,7 +730,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #0f1f43, #1a3c7d)',
     icon: '🛑',
     slaHours: 34,
-    image: new URL('../assets/products/epcs/barril_seguridad_naranja_reflectivo.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/epcs/barril_seguridad_naranja_reflectivo.jpg', import.meta.url).href,
   },
   {
     id: 21,
@@ -810,7 +810,7 @@ const products: ProductCard[] = [
     coverGradient: 'linear-gradient(135deg, #3a2f20, #6f4a1f)',
     icon: '🧻',
     slaHours: 24,
-    image: new URL('../assets/products/oficina/pano_wypall_x80_power.jpeg', import.meta.url).href,
+    image: new URL('../assets/products/oficina/pano_wypall_x80_power.jpg', import.meta.url).href,
   },
   {
     id: 26,
