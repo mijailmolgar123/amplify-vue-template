@@ -4,8 +4,8 @@
       <div class="container align-items-center">
         <a
           class="navbar-brand d-flex align-items-center text-white"
-          href="#inicio"
-          @click.prevent="goTo('#inicio')"
+          href="/"
+          @click.prevent="goTo('/')"
         >
           <img src="@/assets/logo-segurimax.png" alt="Logo Segurimax" class="logo me-2" />
           <div class="brand-copy">
@@ -16,17 +16,17 @@
 
         <div class="primary-nav d-none d-xl-flex align-items-center ms-4 flex-grow-1">
           <ul class="navbar-nav mb-0 flex-row gap-3">
-            <li class="nav-item" v-for="link in navLinks" :key="link.hash">
-              <a class="nav-link" :href="link.hash" @click.prevent="goTo(link.hash)">
+            <li class="nav-item" v-for="link in navLinks" :key="link.path">
+              <RouterLink class="nav-link" :to="link.path" @click="handleNavClick">
                 {{ link.label }}
-              </a>
+              </RouterLink>
             </li>
           </ul>
         </div>
 
         <div class="header-actions ms-auto d-flex align-items-center gap-2">
-          <button class="btn btn-cta d-none d-lg-inline-flex" @click.prevent="goTo('#contacto')">
-            Solicitar Cotización
+          <button class="btn btn-cta d-none d-lg-inline-flex" @click.prevent="goTo('/contacto')">
+            Solicitar Cotizacion
           </button>
           <button
             class="navbar-toggler"
@@ -34,7 +34,7 @@
             data-bs-toggle="offcanvas"
             data-bs-target="#menuOffcanvas"
             aria-controls="menuOffcanvas"
-            aria-label="Abrir menú"
+            aria-label="Abrir menu"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -49,7 +49,7 @@
       aria-labelledby="menuOffcanvasLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="menuOffcanvasLabel">Menú</h5>
+        <h5 class="offcanvas-title" id="menuOffcanvasLabel">Menu</h5>
         <button
           type="button"
           class="btn-close btn-close-white"
@@ -59,14 +59,14 @@
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav">
-          <li class="nav-item" v-for="link in navLinks" :key="`offcanvas-${link.hash}`">
-            <a class="nav-link text-white" :href="link.hash" @click.prevent="goTo(link.hash)">
+          <li class="nav-item" v-for="link in navLinks" :key="`offcanvas-${link.path}`">
+            <RouterLink class="nav-link text-white" :to="link.path" @click="handleNavClick">
               {{ link.label }}
-            </a>
+            </RouterLink>
           </li>
         </ul>
-        <button class="btn btn-cta w-100 mt-4" @click.prevent="goTo('#contacto')">
-          Solicitar Cotización
+        <button class="btn btn-cta w-100 mt-4" @click.prevent="goTo('/contacto')">
+          Solicitar Cotizacion
         </button>
       </div>
     </div>
@@ -74,26 +74,32 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const navLinks = [
-  { label: 'Inicio', hash: '#inicio' },
-  { label: 'Productos', hash: '#destacados' },
-  { label: 'Empresa', hash: '#empresa' },
-  { label: 'Socios', hash: '#socios' },
-  { label: 'Contacto', hash: '#contacto' }
+  { label: 'Inicio',     path: '/' },
+  { label: 'Productos',  path: '/productos' },
+  { label: 'Empresa',    path: '/empresa' },
+  { label: 'Socios',     path: '/socios' },
+  { label: 'Contacto',   path: '/contacto' }
 ]
 
-function goTo(hash: string) {
-  const target = document.querySelector(hash) as HTMLElement | null
-  if (!target) return
+function goTo(path: string) {
+  closeOffcanvas()
+  router.push(path)
+}
 
+function handleNavClick() {
+  closeOffcanvas()
+}
+
+function closeOffcanvas() {
   const offcanvas = document.getElementById('menuOffcanvas')
   if (offcanvas?.classList.contains('show')) {
     ;(offcanvas.querySelector('[data-bs-dismiss="offcanvas"]') as HTMLElement)?.click()
-    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300)
-    return
   }
-
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 </script>
 
