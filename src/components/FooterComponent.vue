@@ -1,85 +1,64 @@
-<!-- src/components/FooterComponent.vue -->
 <template>
-  <footer class="mt-auto parallax-footer text-white py-4">
-    <div class="container">
-      <div class="row gy-3">
-        <div class="col-md-3">
-          <h6 class="fw-bold">Segurimax</h6>
-          <p class="small text-secondary">
-            Líderes en implementos de seguridad industrial con compromiso hacia la excelencia y la protección.
-          </p>
-        </div>
-        <div class="col-md-3">
-          <h6 class="fw-semibold">Productos</h6>
-          <ul class="list-unstyled small">
-            <li><a href="#" class="text-white text-decoration-none">Cascos de Seguridad</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Protección Visual</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Equipos EPP</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Señalización</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h6 class="fw-semibold">Servicios</h6>
-          <ul class="list-unstyled small">
-            <li><a href="#" class="text-white text-decoration-none">Asesoría Técnica</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Capacitación</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Mantenimiento</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Soporte 24/7</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h6 class="fw-semibold">Empresa</h6>
-          <ul class="list-unstyled small">
-            <li><a href="#" class="text-white text-decoration-none">Sobre Nosotros</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Certificaciones</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Noticias</a></li>
-            <li><a href="#" class="text-white text-decoration-none">Contacto</a></li>
-          </ul>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="@/assets/logo-segurimax.png" alt="Segurimax Perú" />
+        <div>
+          <strong>Segurimax Perú</strong>
+          <p>Equipos de protección y seguridad industrial para empresas.</p>
         </div>
       </div>
-      <hr class="border-secondary mt-4" />
-      <p class="text-center small mb-0">&copy; 2024 Segurimax. Todos los derechos reservados.</p>
+
+      <nav aria-label="Productos">
+        <h2>Productos</h2>
+        <RouterLink :to="{ path: '/productos', query: { categoria: 'epps' } }">Equipos EPP</RouterLink>
+        <RouterLink :to="{ path: '/productos', query: { categoria: 'ropa-industrial' } }">Ropa industrial</RouterLink>
+        <RouterLink :to="{ path: '/productos', query: { categoria: 'epcs' } }">Protección colectiva</RouterLink>
+        <RouterLink to="/productos">Ver catálogo</RouterLink>
+      </nav>
+
+      <nav aria-label="Empresa">
+        <h2>Segurimax</h2>
+        <RouterLink to="/empresa">Nuestra empresa</RouterLink>
+        <RouterLink to="/marcas">Marcas</RouterLink>
+        <RouterLink to="/contacto">Contacto</RouterLink>
+      </nav>
+
+      <div class="footer-contact">
+        <h2>Ventas</h2>
+        <a href="tel:+51996665221"><i class="fa-solid fa-phone" aria-hidden="true"></i> +51 996 665 221</a>
+        <a href="mailto:ventas@segurimax-peru.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> ventas@segurimax-peru.com</a>
+        <a href="https://wa.me/51996665221" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp ventas</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© {{ currentYear }} Segurimax Perú</span>
+      <span>Seguridad para quienes hacen que el Perú avance.</span>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-// Este componente es estático y no necesita lógica adicional
+const currentYear = new Date().getFullYear()
 </script>
 
 <style scoped>
-footer {
-  width: 100%;
-}
-.parallax-footer {
-  position: relative;
-  background:
-    linear-gradient(120deg, rgba(1, 19, 8, 0.9), rgba(3, 43, 24, 0.85)),
-    url('@/assets/fondo.png') center/cover no-repeat;
-  background-attachment: scroll, fixed;
-}
-.parallax-footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  pointer-events: none;
-}
-.parallax-footer > .container,
-.parallax-footer h6,
-.parallax-footer p,
-.parallax-footer a,
-.parallax-footer ul,
-.parallax-footer hr {
-  position: relative;
-  z-index: 1;
-}
-footer a:hover {
-  text-decoration: underline;
-}
-@media (max-width: 991.98px) {
-  .parallax-footer {
-    background-attachment: scroll, scroll;
-  }
+.site-footer { padding: 4rem 0 1.5rem; color: #fff; background: #03170f; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr .8fr 1.25fr; gap: 3rem; }
+.footer-brand { display: flex; align-items: flex-start; gap: 1rem; }
+.footer-brand img { width: 58px; height: 58px; object-fit: contain; }
+.footer-brand strong { font-family: var(--font-heading); font-size: 1.22rem; font-weight: 400; }
+.footer-brand p { max-width: 300px; margin: .65rem 0 0; color: rgba(255,255,255,.53); font-size: .9rem; }
+.site-footer h2 { margin: 0 0 1rem; color: #fff; font-family: var(--font-body); font-size: .8rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.site-footer nav, .footer-contact { display: flex; flex-direction: column; align-items: flex-start; gap: .55rem; }
+.site-footer a { color: rgba(255,255,255,.65); font-size: .88rem; text-decoration: none; }
+.site-footer a:hover { color: var(--brand-yellow); }
+.footer-contact a { display: inline-flex; align-items: center; gap: .55rem; }
+.footer-contact i { width: 18px; color: #a9d8b9; }
+.footer-bottom { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.4); font-size: .78rem; }
+@media (max-width: 991.98px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 575.98px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; }
 }
 </style>

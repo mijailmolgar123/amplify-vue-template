@@ -150,20 +150,25 @@ const mailtoHref = computed(() => {
   color: #0b2617;
 }
 .btn-pill {
-  border-radius: 999px;
-  padding: 0.65rem 1.8rem;
-  font-weight: 600;
+  min-height: 54px;
+  border-radius: 6px;
+  padding: 0.8rem 1.8rem;
+  font-weight: 800;
   min-width: 210px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 .btn-pill-primary {
-  background: linear-gradient(120deg, #1c8f41, #0f5e2b);
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 12px 30px rgba(7, 64, 32, 0.25);
+  background: #ffcf00;
+  color: #161616;
+  border: 2px solid #ffcf00;
+  box-shadow: 0 12px 24px rgba(255, 207, 0, 0.2);
 }
 .btn-pill-primary:hover {
-  color: #ffffff;
-  box-shadow: 0 15px 35px rgba(7, 64, 32, 0.3);
+  color: #161616;
+  background: #f0bd00;
+  border-color: #f0bd00;
+  box-shadow: 0 15px 28px rgba(255, 207, 0, 0.28);
 }
 @media (max-width: 767.98px) {
   .contacto-card {

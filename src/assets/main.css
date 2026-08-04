@@ -5,6 +5,12 @@
 /* Scroll suave para anclas */
 html {
   scroll-behavior: smooth; /* MDN */
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+  background: var(--brand-ivory);
 }
 
 /* Altura aproximada de tu navbar (ajústala si cambia) */
@@ -27,23 +33,37 @@ section[id], [id] {
 
 /* Botones tipo pill reutilizables */
 .btn-pill {
-  font-weight: 600;
-  border-radius: 999px;
-  padding: 0.95rem 2.4rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 0.9rem 2rem;
+  letter-spacing: -0.01em;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
   font-family: var(--font-body, 'Wix Madefor Text', sans-serif);
   font-optical-sizing: auto;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 .btn-pill-primary {
-  background: linear-gradient(120deg, #0f8b3c, #066029);
-  color: #f5fff4;
-  border: none;
-  box-shadow: 0 15px 35px rgba(6, 96, 41, 0.45);
+  background: var(--brand-yellow);
+  color: var(--brand-ink);
+  border: 2px solid var(--brand-yellow);
+  box-shadow: 0 12px 24px rgba(245, 200, 76, 0.2);
 }
 .btn-pill-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 35px rgba(6, 96, 41, 0.6);
-  color: #f5fff4;
+  transform: translateY(-2px);
+  background: #e8b92e;
+  border-color: #e8b92e;
+  box-shadow: 0 16px 28px rgba(245, 200, 76, 0.28);
+  color: var(--brand-ink);
 }
 .btn-pill-outline-light {
   border: 2px solid rgba(255, 255, 255, 0.85);
@@ -51,9 +71,23 @@ section[id], [id] {
   background: transparent;
 }
 .btn-pill-outline-light:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: #fff;
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
 }
 
+.section-kicker {
+  margin-bottom: .65rem;
+  color: var(--brand-green);
+  font-size: .74rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.section-heading {
+  color: var(--brand-ink);
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  line-height: 1.04;
+}

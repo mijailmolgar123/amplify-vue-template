@@ -5,6 +5,7 @@ import router from './router'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'        // ya carga todo el JS de Bootstrap
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import '@/assets/base.css'
 import '@/assets/main.css'
@@ -13,4 +14,4 @@ import outputs from '../amplify_outputs.json'
 
 Amplify.configure(outputs)
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).mount('#app')

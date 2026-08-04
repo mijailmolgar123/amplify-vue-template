@@ -1,149 +1,149 @@
 <template>
   <section id="inicio" class="hero-section">
-    <div class="container position-relative">
-      <div class="hero-copy mx-auto text-center">
-        <p class="hero-eyebrow text-uppercase">Confianza operativa para tu equipo de trabajo</p>
-        <h1 class="hero-title fw-bold">
-          Protección Industrial de
-          <span class="typed-text">{{ typedText }}</span>
-          <span class="typed-cursor">|</span>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">SEGURIDAD INDUSTRIAL PARA EMPRESAS</p>
+        <h1>
+          <span>EPP para</span>
+          <span class="typed-line" aria-hidden="true">
+            <span class="typed-text">{{ typedText }}</span><span class="typed-cursor">|</span>
+          </span>
+          <span class="visually-hidden">&nbsp;minería, construcción e industria</span>
         </h1>
-        <p class="lead hero-description">
-          Segurimax es líder en implementos de seguridad industrial con más de 5 años de experiencia.
-        </p>
-        <div class="hero-buttons d-flex flex-wrap justify-content-center gap-3">
-          <a href="#destacados" class="btn btn-pill btn-pill-primary">Ver Catálogo</a>
-          <button class="btn btn-pill btn-pill-outline-light" @click="scrollToContacto">Solicitar Cotización</button>
+        <p class="hero-description">Elige productos, indica cantidades y envía una sola solicitud.</p>
+        <div class="hero-actions">
+          <RouterLink to="/productos" class="btn btn-pill btn-pill-primary">
+            Armar mi cotización
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </RouterLink>
+          <a
+            class="hero-whatsapp"
+            href="https://wa.me/51996665221?text=Hola%20Segurimax%2C%20necesito%20asesor%C3%ADa%20para%20elegir%20EPP."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            Hablar con ventas
+          </a>
+        </div>
+        <div class="hero-proof" aria-label="Ventajas de la cotización Segurimax">
+          <span><i class="fa-solid fa-tags" aria-hidden="true"></i> Catálogo multimarcas</span>
+          <span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Una sola solicitud</span>
+          <span><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> WhatsApp o correo</span>
         </div>
       </div>
     </div>
+    <a href="#categorias" class="hero-scroll" aria-label="Ver categorías">
+      <span>Explorar</span>
+      <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+    </a>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-const typedText = ref('Clase Mundial')
-const phrases = ['Clase Mundial', 'Calidad Certificada', 'Máxima Confianza']
-let charIndex = 0
+const phrases = ['minería', 'construcción', 'industria']
+const typedText = ref(phrases[0])
 let phraseIndex = 0
-let typing = true
-let timer: ReturnType<typeof setTimeout> | undefined
+let charIndex = phrases[0].length
+let deleting = true
+let timer: number | undefined
+let motionQuery: MediaQueryList | undefined
 
 function typeLoop() {
   const phrase = phrases[phraseIndex]
 
-  if (typing) {
-    typedText.value = phrase.slice(0, charIndex + 1)
-    charIndex++
-    if (charIndex === phrase.length) {
-      typing = false
-      timer = setTimeout(typeLoop, 1500)
+  if (deleting) {
+    charIndex -= 1
+    typedText.value = phrase.slice(0, Math.max(0, charIndex))
+    if (charIndex <= 0) {
+      deleting = false
+      phraseIndex = (phraseIndex + 1) % phrases.length
+      timer = window.setTimeout(typeLoop, 260)
       return
     }
   } else {
-    typedText.value = phrase.slice(0, charIndex - 1)
-    charIndex--
-    if (charIndex === 0) {
-      typing = true
-      phraseIndex = (phraseIndex + 1) % phrases.length
+    const nextPhrase = phrases[phraseIndex]
+    charIndex += 1
+    typedText.value = nextPhrase.slice(0, charIndex)
+    if (charIndex >= nextPhrase.length) {
+      deleting = true
+      timer = window.setTimeout(typeLoop, 1500)
+      return
     }
   }
 
-  const delay = typing ? 110 : 60
-  timer = setTimeout(typeLoop, delay)
+  timer = window.setTimeout(typeLoop, deleting ? 55 : 95)
 }
 
-function scrollToContacto() {
-  const el = document.getElementById('contacto')
-  if (el) el.scrollIntoView({ behavior: 'smooth' })
+function configureMotion() {
+  if (timer) window.clearTimeout(timer)
+  if (motionQuery?.matches) {
+    typedText.value = 'industria'
+    return
+  }
+
+  phraseIndex = 0
+  charIndex = phrases[0].length
+  deleting = true
+  typedText.value = phrases[0]
+  timer = window.setTimeout(typeLoop, 1500)
 }
 
 onMounted(() => {
-  typeLoop()
+  motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  configureMotion()
+  motionQuery.addEventListener('change', configureMotion)
 })
 
 onBeforeUnmount(() => {
-  if (timer) clearTimeout(timer)
+  if (timer) window.clearTimeout(timer)
+  motionQuery?.removeEventListener('change', configureMotion)
 })
 </script>
 
 <style scoped>
-.hero-section {
-  position: relative;
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  font-family: var(--font-body, 'Wix Madefor Text', sans-serif);
-  color: #fff;
-  background:
-    linear-gradient(120deg, rgba(1, 19, 8, 0.8), rgba(3, 43, 24, 0.6)),
-    url('@/assets/fondo.png') center/cover no-repeat;
-  background-attachment: scroll, fixed;
+.hero-section { position: relative; min-height: calc(100svh - 82px); display: flex; align-items: center; overflow: hidden; color: #fff; background: url('@/assets/fondo.png') 42% center / cover no-repeat; }
+.hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,29,19,.97) 0%, rgba(4,29,19,.88) 42%, rgba(4,29,19,.42) 74%, rgba(4,29,19,.18) 100%), linear-gradient(0deg, rgba(4,29,19,.45), transparent 44%); }
+.hero-inner { position: relative; z-index: 1; }
+.hero-copy { max-width: 720px; padding: 4.5rem 0 5.5rem; }
+.hero-eyebrow { margin: 0 0 1.15rem; color: var(--brand-yellow); font-size: .74rem; font-weight: 850; letter-spacing: .19em; animation: hero-rise .6s ease both; }
+h1 { min-height: 2.08em; margin: 0; color: #fff; font-family: var(--font-body); font-size: clamp(3rem, 6.3vw, 5.8rem); font-weight: 700; letter-spacing: -.055em; line-height: 1.01; text-wrap: balance; animation: hero-rise .65s .07s ease both; }
+h1 > span:first-child, .typed-line { display: block; }
+.typed-line { min-height: 1.02em; color: #a9d8b9; }
+.typed-text { display: inline; }
+.typed-cursor { display: inline-block; margin-left: .08em; color: var(--brand-yellow); font-weight: 450; animation: blink .9s steps(2, start) infinite; }
+.hero-description { max-width: 520px; margin: 1.35rem 0 1.8rem; color: rgba(255,255,255,.78); font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.55; animation: hero-rise .65s .14s ease both; }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.4rem; animation: hero-rise .65s .21s ease both; }
+.hero-actions .btn { min-height: 56px; gap: .7rem; text-decoration: none; }
+.hero-whatsapp { display: inline-flex; align-items: center; gap: .6rem; min-height: 48px; color: #fff; font-weight: 800; text-decoration: none; }
+.hero-whatsapp i { color: #4ade80; font-size: 1.2rem; }
+.hero-whatsapp:hover { color: var(--brand-yellow); }
+.hero-proof { display: flex; flex-wrap: wrap; gap: .75rem 1.4rem; margin-top: 2.4rem; color: rgba(255,255,255,.67); font-size: .82rem; font-weight: 700; animation: hero-rise .65s .28s ease both; }
+.hero-proof span { display: inline-flex; align-items: center; gap: .45rem; }
+.hero-proof i { color: #a9d8b9; }
+.hero-scroll { position: absolute; z-index: 1; right: 3rem; bottom: 2rem; display: flex; align-items: center; gap: .65rem; color: rgba(255,255,255,.64); font-size: .7rem; font-weight: 800; letter-spacing: .15em; text-decoration: none; text-transform: uppercase; }
+.hero-scroll i { animation: scroll-bob 1.6s ease-in-out infinite; }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+@keyframes scroll-bob { 50% { transform: translateY(5px); } }
+@media (max-width: 767.98px) {
+  .hero-section { min-height: calc(100svh - 74px); background-position: 48% center; }
+  .hero-shade { background: linear-gradient(0deg, rgba(4,29,19,.98) 0%, rgba(4,29,19,.78) 68%, rgba(4,29,19,.42) 100%); }
+  .hero-copy { padding: 4rem 0 3.5rem; }
+  h1 { min-height: 2.15em; font-size: clamp(2.75rem, 12.5vw, 4rem); }
+  .hero-actions { align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
+  .hero-whatsapp { justify-content: center; }
+  .hero-proof { gap: .65rem 1rem; margin-top: 1.7rem; }
+  .hero-proof span { width: calc(50% - .5rem); font-size: .74rem; }
+  .hero-proof span:last-child { width: 100%; }
+  .hero-scroll { display: none; }
 }
-.hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.8));
-  mix-blend-mode: lighten;
-  pointer-events: none;
-}
-.hero-copy {
-  position: relative;
-  z-index: 1;
-  max-width: 720px;
-  padding: 4rem 1rem 3rem;
-}
-.hero-eyebrow {
-  letter-spacing: 0.3em;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 1rem;
-}
-.hero-title {
-  font-size: clamp(2.5rem, 7vw, 3.8rem);
-  line-height: 1.2;
-  font-family: var(--font-heading, 'Alfa Slab One', serif);
-}
-.typed-text {
-  color: var(--brand-green, #47f48a);
-  display: inline-block;
-  min-width: 8ch;
-}
-.typed-cursor {
-  display: inline-block;
-  margin-left: 0.2rem;
-  animation: blink 1s steps(2, start) infinite;
-}
-.hero-description {
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 1.1rem;
-  margin: 1.5rem auto 2.5rem;
-}
-.hero-buttons .btn {
-  font-weight: 600;
-}
-
-@keyframes blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  51%, 100% {
-    opacity: 0;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .hero-section {
-    padding-top: 4rem;
-    background-attachment: scroll, scroll;
-  }
-  .hero-copy {
-    padding-top: 5rem;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, h1, .hero-description, .hero-actions, .hero-proof, .hero-scroll i, .typed-cursor { animation: none; }
+  .typed-cursor { display: none; }
 }
 </style>

@@ -33,12 +33,18 @@
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
 
-  --font-body: 'Wix Madefor Text', 'Anton', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Alfa Slab One', 'Playfair Display', serif;
+  --font-body: 'Wix Madefor Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Wix Madefor Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* brand accents */
-  --brand-green: #008c3a;
-  --brand-green-dark: #007030;
+  --brand-forest: #082b1d;
+  --brand-forest-deep: #041d13;
+  --brand-green: #187847;
+  --brand-green-dark: #106139;
+  --brand-yellow: #f5c84c;
+  --brand-ivory: #f7f5ef;
+  --brand-sage: #dce8df;
+  --brand-ink: #17231c;
 
   --section-gap: 160px;
 }
@@ -53,7 +59,7 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background: var(--brand-ivory);
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -67,19 +73,26 @@ body {
 }
 
 h1,
-h2,
+h2 {
+  font-family: var(--font-heading);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
-  font-optical-sizing: auto;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-weight: 800;
 }
 
 strong,
-b,
+b {
+  font-family: inherit;
+  font-weight: 800;
+}
 .fw-bold {
-  font-family: var(--font-heading) !important;
-  font-weight: 400 !important;
+  font-family: inherit !important;
+  font-weight: 800 !important;
 }

@@ -1,40 +1,42 @@
 <template>
   <header class="segurimax-header">
     <nav class="navbar navbar-dark">
-      <div class="container align-items-center">
-        <a
-          class="navbar-brand d-flex align-items-center text-white"
-          href="/"
-          @click.prevent="goTo('/')"
-        >
-          <img src="@/assets/logo-segurimax.png" alt="Logo Segurimax" class="logo me-2" />
+      <div class="container header-inner">
+        <a class="navbar-brand" href="/" @click.prevent="goTo('/')">
+          <img src="@/assets/logo-segurimax.png" alt="Segurimax Perú" class="logo" />
           <div class="brand-copy">
-            <span class="fw-bold fs-4">Segurimax Peru</span>
-            <small class="text-uppercase">Soluciones integrales</small>
+            <strong>Segurimax Perú</strong>
+            <small>Seguridad industrial</small>
           </div>
         </a>
 
-        <div class="primary-nav d-none d-xl-flex align-items-center ms-4 flex-grow-1">
-          <ul class="navbar-nav mb-0 flex-row gap-3">
-            <li class="nav-item" v-for="link in navLinks" :key="link.path">
-              <RouterLink class="nav-link" :to="link.path" @click="handleNavClick">
-                {{ link.label }}
-              </RouterLink>
-            </li>
-          </ul>
+        <div class="primary-nav d-none d-lg-flex">
+          <RouterLink v-for="link in navLinks" :key="link.path" class="nav-link" :to="link.path">
+            {{ link.label }}
+          </RouterLink>
         </div>
 
-        <div class="header-actions ms-auto d-flex align-items-center gap-2">
-          <button class="btn btn-cta d-none d-lg-inline-flex" @click.prevent="goTo('/contacto')">
-            Solicitar Cotizacion
+        <div class="header-actions">
+          <button class="search-action d-none d-lg-inline-flex" type="button" aria-label="Buscar productos" @click="goTo('/productos')">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
           <button
-            class="navbar-toggler"
+            class="quote-action"
+            type="button"
+            :aria-label="`Abrir mi cotización. ${itemCount} productos seleccionados`"
+            @click="openCart"
+          >
+            <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+            <span class="quote-action__label">Mi cotización</span>
+            <span class="quote-count" aria-label="Productos seleccionados">{{ itemCount }}</span>
+          </button>
+          <button
+            class="navbar-toggler d-lg-none"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#menuOffcanvas"
             aria-controls="menuOffcanvas"
-            aria-label="Abrir menu"
+            aria-label="Abrir menú"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -43,31 +45,34 @@
     </nav>
 
     <div
-      class="offcanvas offcanvas-end text-bg-dark"
+      class="offcanvas offcanvas-end mobile-menu"
       tabindex="-1"
       id="menuOffcanvas"
       aria-labelledby="menuOffcanvasLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="menuOffcanvasLabel">Menu</h5>
-        <button
-          type="button"
-          class="btn-close btn-close-white"
-          data-bs-dismiss="offcanvas"
-          aria-label="Cerrar"
-        ></button>
+        <div>
+          <small>SEGURIMAX PERÚ</small>
+          <h2 class="offcanvas-title" id="menuOffcanvasLabel">Menú</h2>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav">
-          <li class="nav-item" v-for="link in navLinks" :key="`offcanvas-${link.path}`">
-            <RouterLink class="nav-link text-white" :to="link.path" @click="handleNavClick">
-              {{ link.label }}
-            </RouterLink>
-          </li>
-        </ul>
-        <button class="btn btn-cta w-100 mt-4" @click.prevent="goTo('/contacto')">
-          Solicitar Cotizacion
+        <nav class="mobile-nav" aria-label="Navegación móvil">
+          <RouterLink v-for="link in navLinks" :key="`mobile-${link.path}`" :to="link.path" @click="closeOffcanvas">
+            <span>{{ link.label }}</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </RouterLink>
+        </nav>
+        <button class="mobile-quote" type="button" @click="openCartFromMenu">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+          Abrir mi cotización
+          <span>{{ itemCount }}</span>
         </button>
+        <a class="mobile-whatsapp" href="https://wa.me/51996665221" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+          Hablar con un asesor
+        </a>
       </div>
     </div>
   </header>
@@ -75,15 +80,17 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useQuoteCart } from '@/composables/useQuoteCart'
 
 const router = useRouter()
+const { itemCount, openCart } = useQuoteCart()
 
 const navLinks = [
-  { label: 'Inicio',     path: '/' },
-  { label: 'Productos',  path: '/productos' },
-  { label: 'Empresa',    path: '/empresa' },
-  { label: 'Socios',     path: '/socios' },
-  { label: 'Contacto',   path: '/contacto' }
+  { label: 'Inicio', path: '/' },
+  { label: 'Productos', path: '/productos' },
+  { label: 'Empresa', path: '/empresa' },
+  { label: 'Marcas', path: '/marcas' },
+  { label: 'Contacto', path: '/contacto' },
 ]
 
 function goTo(path: string) {
@@ -91,8 +98,9 @@ function goTo(path: string) {
   router.push(path)
 }
 
-function handleNavClick() {
+function openCartFromMenu() {
   closeOffcanvas()
+  window.setTimeout(openCart, 180)
 }
 
 function closeOffcanvas() {
@@ -108,78 +116,60 @@ function closeOffcanvas() {
   position: sticky;
   top: 0;
   z-index: 1100;
-  isolation: isolate;
+  color: #fff;
+  background: rgba(4, 29, 19, .96);
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  backdrop-filter: blur(18px);
 }
-.segurimax-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(120deg, rgba(1, 19, 8, 0.92), rgba(3, 43, 24, 0.78)),
-    url('@/assets/fondo.png') center/cover no-repeat;
-  background-attachment: scroll, fixed;
-  filter: brightness(0.9);
+.navbar { min-height: 82px; padding: .55rem 0; }
+.header-inner { display: flex; align-items: center; gap: 1.5rem; }
+.navbar-brand { display: inline-flex; align-items: center; gap: .7rem; margin: 0; color: #fff; }
+.logo { width: 48px; height: 48px; object-fit: contain; }
+.brand-copy { display: grid; line-height: 1.05; }
+.brand-copy strong { font-family: var(--font-heading); font-size: 1.28rem; font-weight: 400; white-space: nowrap; }
+.brand-copy small { margin-top: .36rem; color: rgba(255,255,255,.56); font-size: .62rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.primary-nav { flex: 1; align-items: center; justify-content: center; gap: .15rem; }
+.primary-nav .nav-link { position: relative; padding: .6rem .78rem; color: rgba(255,255,255,.75); font-size: .84rem; font-weight: 750; }
+.primary-nav .nav-link::after { content: ''; position: absolute; left: .78rem; right: .78rem; bottom: .24rem; height: 2px; background: var(--brand-yellow); transform: scaleX(0); transition: transform .2s ease; }
+.primary-nav .nav-link:hover, .primary-nav .router-link-active { color: #fff; }
+.primary-nav .nav-link:hover::after, .primary-nav .router-link-active::after { transform: scaleX(1); }
+.header-actions { display: flex; align-items: center; gap: .55rem; margin-left: auto; }
+.search-action { width: 44px; height: 44px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.18); border-radius: 8px; color: #fff; background: transparent; }
+.quote-action { min-height: 48px; display: inline-flex; align-items: center; gap: .58rem; padding: .65rem .75rem .65rem 1rem; border: 0; border-radius: 8px; color: var(--brand-ink); background: var(--brand-yellow); font-size: .86rem; font-weight: 900; }
+.quote-count { min-width: 27px; height: 27px; display: grid; place-items: center; padding: 0 .35rem; border-radius: 6px; color: #fff; background: var(--brand-forest); font-size: .75rem; }
+.navbar-toggler { width: 46px; height: 46px; padding: .45rem; border-color: rgba(255,255,255,.25); }
+.mobile-menu {
+  --bs-offcanvas-width: min(88vw, 390px);
+  height: 100vh;
+  height: 100svh;
+  overflow-y: auto;
+  color: #fff;
+  background: var(--brand-forest);
 }
-.navbar {
-  padding-top: 0.65rem;
-  padding-bottom: 0.65rem;
-  background: transparent;
+.offcanvas-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+.offcanvas-header small { color: var(--brand-yellow); font-size: .68rem; font-weight: 900; letter-spacing: .18em; }
+.offcanvas-title { margin-top: .35rem; color: #fff; font-size: 2rem; }
+.offcanvas-body { display: flex; flex-direction: column; padding: 1.25rem 1.5rem 1.5rem; }
+.mobile-nav { display: grid; }
+.mobile-nav a { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.1); color: #fff; font-size: 1.08rem; font-weight: 800; text-decoration: none; }
+.mobile-nav i { color: var(--brand-yellow); font-size: .8rem; }
+.mobile-quote, .mobile-whatsapp { min-height: 54px; display: flex; align-items: center; justify-content: center; gap: .65rem; margin-top: 1.4rem; border: 0; border-radius: 8px; font-weight: 900; text-decoration: none; }
+.mobile-quote { color: var(--brand-ink); background: var(--brand-yellow); }
+.mobile-quote span { min-width: 26px; height: 26px; display: grid; place-items: center; border-radius: 5px; color: #fff; background: var(--brand-forest); }
+.mobile-whatsapp { margin-top: .7rem; color: #fff; background: rgba(255,255,255,.09); }
+:global(section[id]) { scroll-margin-top: 90px; }
+@media (max-width: 1199.98px) {
+  .primary-nav .nav-link { padding-inline: .55rem; font-size: .8rem; }
+  .quote-action__label { display: none; }
+  .quote-action { padding-inline: .8rem; }
 }
-.primary-nav .navbar-nav {
-  margin-left: auto;
-  margin-right: auto;
-}
-.navbar-brand small {
-  display: block;
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.7);
-}
-.navbar-nav .nav-link {
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
-  padding: 0.4rem 0.9rem;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-}
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus {
-  color: var(--brand-green, #4de894);
-}
-.btn-cta {
-  font-weight: 700;
-  color: #042413;
-  background: linear-gradient(120deg, #c1ff8c, #5ff0ae);
-  border-radius: 999px;
-  padding: 0.55rem 1.8rem;
-  border: none;
-  box-shadow: 0 12px 30px rgba(79, 239, 177, 0.35);
-}
-.btn-cta:hover {
-  color: #02160b;
-  box-shadow: 0 14px 35px rgba(79, 239, 177, 0.45);
-  transform: translateY(-1px);
-}
-.header-actions .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.4);
-  border-width: 1px;
-}
-.logo {
-  width: 52px;
-  height: auto;
-  display: block;
-}
-:global(section[id]) {
-  scroll-margin-top: 90px;
-}
-@media (max-width: 991.98px) {
-  .segurimax-header::before {
-    background-attachment: scroll, scroll;
-  }
-  .primary-nav {
-    display: none !important;
-  }
+@media (max-width: 575.98px) {
+  .navbar { min-height: 74px; }
+  .logo { width: 43px; height: 43px; }
+  .brand-copy strong { font-size: 1.02rem; }
+  .brand-copy small { font-size: .52rem; }
+  .quote-action { min-width: 44px; min-height: 44px; padding: .55rem; }
+  .quote-action > i { display: none; }
+  .header-actions { gap: .4rem; }
 }
 </style>
