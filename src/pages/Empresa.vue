@@ -130,7 +130,7 @@ const documents = [
 .empresa-page { color: var(--brand-ink); background: #fff; }
 .empresa-hero { padding: clamp(4.5rem, 9vw, 8.5rem) 0; color: #fff; background: linear-gradient(115deg, rgba(4,29,19,.96), rgba(8,43,29,.82)), url('@/assets/fondo.png') center / cover; }
 .empresa-hero__inner { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr); align-items: end; gap: clamp(3rem, 8vw, 8rem); }
-.empresa-hero h1 { max-width: 800px; margin: .5rem 0 1rem; color: #fff; font-family: var(--font-body); font-size: clamp(2.7rem, 6vw, 5.8rem); font-weight: 700; letter-spacing: -.055em; line-height: 1.02; }
+.empresa-hero h1 { max-width: 800px; margin: .5rem 0 1rem; color: #fff; font-family: var(--font-heading); font-size: clamp(2.7rem, 6vw, 5.5rem); font-weight: 620; letter-spacing: -.035em; line-height: 1.02; }
 .empresa-hero__inner > div > p:last-of-type { max-width: 620px; color: rgba(255,255,255,.74); font-size: 1.08rem; }
 .empresa-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1.3rem; margin-top: 2rem; }
 .text-link { display: inline-flex; align-items: center; gap: .55rem; color: #fff; font-weight: 800; text-decoration: none; }
@@ -140,7 +140,7 @@ const documents = [
 .catalog-facts dd { margin: 0; color: rgba(255,255,255,.7); }
 .empresa-service { padding: clamp(4.5rem, 8vw, 8rem) 0; background: var(--brand-ivory); }
 .service-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(420px, 1.2fr); gap: clamp(3rem, 9vw, 9rem); }
-.service-intro h2, .section-heading-row h2, .empresa-docs h2 { margin: .45rem 0 1rem; color: var(--brand-ink); font-family: var(--font-body); font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 700; letter-spacing: -.045em; line-height: 1.05; }
+.service-intro h2, .section-heading-row h2, .empresa-docs h2 { margin: .45rem 0 1rem; color: var(--brand-ink); font-family: var(--font-heading); font-size: clamp(2rem, 4.5vw, 3.8rem); font-weight: 620; letter-spacing: -.03em; line-height: 1.05; }
 .service-intro > p:last-child, .empresa-docs p:last-child { color: #657168; }
 .service-steps { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(8,43,29,.16); }
 .service-steps li { display: grid; grid-template-columns: 52px 1fr; gap: 1.2rem; padding: 1.35rem 0; border-bottom: 1px solid rgba(8,43,29,.16); }
@@ -167,7 +167,7 @@ const documents = [
 .docs-logos img { width: 100%; height: 150px; object-fit: contain; }
 .empresa-cta { padding: 3.5rem 0; color: #fff; background: var(--brand-forest-deep); }
 .empresa-cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.empresa-cta h2 { margin: .35rem 0 0; color: #fff; font-family: var(--font-body); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; }
+.empresa-cta h2 { margin: .35rem 0 0; color: #fff; font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 620; }
 @media (max-width: 991.98px) {
   .empresa-hero__inner, .service-layout, .docs-layout { grid-template-columns: 1fr; }
   .catalog-facts { max-width: 520px; }

@@ -94,11 +94,11 @@ const brands = catalogBrands.map((brand) => {
 .marcas-page { color: var(--brand-ink); background: #fff; }
 .marcas-hero { padding: clamp(4.5rem, 9vw, 8rem) 0; color: #fff; background: var(--brand-forest-deep); }
 .marcas-hero__inner { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr); align-items: end; gap: clamp(3rem, 9vw, 9rem); }
-.marcas-hero h1 { max-width: 880px; margin: .5rem 0 0; color: #fff; font-family: var(--font-body); font-size: clamp(2.8rem, 6vw, 5.6rem); font-weight: 700; letter-spacing: -.055em; line-height: 1.02; }
+.marcas-hero h1 { max-width: 880px; margin: .5rem 0 0; color: #fff; font-family: var(--font-heading); font-size: clamp(2.8rem, 6vw, 5.3rem); font-weight: 620; letter-spacing: -.035em; line-height: 1.02; }
 .marcas-hero__inner > p { margin: 0 0 .5rem; color: rgba(255,255,255,.7); font-size: 1.05rem; line-height: 1.6; }
 .marcas-list { padding: clamp(4.5rem, 8vw, 7.5rem) 0; }
 .marcas-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
-.marcas-heading h2 { margin: .4rem 0 0; color: var(--brand-ink); font-family: var(--font-body); font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 700; letter-spacing: -.045em; }
+.marcas-heading h2 { margin: .4rem 0 0; color: var(--brand-ink); font-family: var(--font-heading); font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 620; letter-spacing: -.03em; }
 .marcas-heading > p { max-width: 320px; margin: 0; color: #68736c; }
 .brand-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(8,43,29,.14); border-left: 1px solid rgba(8,43,29,.14); }
 .brand-item { min-height: 235px; display: grid; grid-template-columns: 42% 58%; border-right: 1px solid rgba(8,43,29,.14); border-bottom: 1px solid rgba(8,43,29,.14); background: #fff; }
@@ -116,7 +116,7 @@ const brands = catalogBrands.map((brand) => {
 .marcas-note p { max-width: 900px; margin: 0; color: #526057; font-size: .86rem; }
 .marcas-cta { padding: 3.5rem 0; color: #fff; background: var(--brand-forest); }
 .marcas-cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.marcas-cta h2 { margin: .35rem 0 0; color: #fff; font-family: var(--font-body); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; }
+.marcas-cta h2 { margin: .35rem 0 0; color: #fff; font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 620; }
 @media (max-width: 991.98px) {
   .marcas-hero__inner { grid-template-columns: 1fr; }
 }

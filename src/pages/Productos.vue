@@ -256,7 +256,7 @@ function addProductToQuote(product: CatalogProduct) {
 .page-productos { color: var(--brand-ink); background: var(--brand-ivory); }
 .productos-hero { position: relative; overflow: hidden; padding: clamp(3.5rem, 7vw, 6.5rem) 0; color: #fff; background: var(--brand-forest-deep); }
 .productos-hero__inner { position: relative; z-index: 1; }
-.productos-hero h1 { max-width: 850px; margin: .25rem 0 .75rem; color: #fff; font-family: var(--font-body); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 750; letter-spacing: -.045em; line-height: 1; }
+.productos-hero h1 { max-width: 850px; margin: .25rem 0 .75rem; color: #fff; font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 620; letter-spacing: -.03em; line-height: 1; }
 .productos-hero p:last-child { max-width: 560px; margin: 0; color: rgba(255,255,255,.7); font-size: 1.05rem; }
 .hero-grid-overlay { position: absolute; inset: 0; opacity: .22; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(90deg, transparent 20%, #000); }
 .eyebrow { margin: 0; color: var(--brand-yellow); font-size: .72rem; font-weight: 850; letter-spacing: .2em; }
@@ -272,7 +272,7 @@ function addProductToQuote(product: CatalogProduct) {
 .search-input input { padding: .7rem .8rem .7rem 2.6rem; }
 .products-grid-section { padding: clamp(4rem, 7vw, 7rem) 0; }
 .results-header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
-.results-header h2 { margin: .35rem 0 .25rem; color: var(--brand-ink); font-family: var(--font-body); font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 750; letter-spacing: -.035em; }
+.results-header h2 { margin: .35rem 0 .25rem; color: var(--brand-ink); font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 620; letter-spacing: -.025em; }
 .results-header p:last-child { margin: 0; color: #6b766f; }
 .results-meta { display: flex; align-items: center; gap: 1rem; color: #66736b; font-size: .82rem; }
 .results-meta span { padding: .45rem .65rem; border-radius: 6px; background: var(--brand-sage); }
@@ -298,12 +298,12 @@ function addProductToQuote(product: CatalogProduct) {
 .add-product i { margin-right: .45rem; }
 .empty-state { min-height: 360px; display: grid; place-items: center; align-content: center; gap: .7rem; text-align: center; }
 .empty-state > i { color: var(--brand-green); font-size: 2.4rem; }
-.empty-state h2 { margin: .5rem 0 0; color: var(--brand-ink); font-family: var(--font-body); font-size: 1.5rem; }
+.empty-state h2 { margin: .5rem 0 0; color: var(--brand-ink); font-family: var(--font-heading); font-size: 1.5rem; }
 .empty-state p { margin: 0; color: #68736c; }
 .empty-state button { min-height: 48px; margin-top: .8rem; padding: .7rem 1.2rem; border: 0; border-radius: 7px; color: #fff; background: var(--brand-forest); font-weight: 850; }
 .productos-cta { padding: 3.5rem 0; color: #fff; background: var(--brand-forest-deep); }
 .productos-cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.productos-cta h2 { margin: .35rem 0 0; color: #fff; font-family: var(--font-body); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 750; }
+.productos-cta h2 { margin: .35rem 0 0; color: #fff; font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 620; }
 .productos-cta__actions { display: flex; gap: .75rem; }
 .productos-cta__actions button, .productos-cta__actions a { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; padding: .75rem 1.1rem; border: 1px solid rgba(255,255,255,.35); border-radius: 7px; color: #fff; background: transparent; font-weight: 850; text-decoration: none; }
 .productos-cta__actions button { border-color: var(--brand-yellow); color: var(--brand-ink); background: var(--brand-yellow); }

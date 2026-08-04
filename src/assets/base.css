@@ -33,8 +33,8 @@
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
 
-  --font-body: 'Wix Madefor Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Wix Madefor Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Archivo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* brand accents */
   --brand-forest: #082b1d;
@@ -76,8 +76,9 @@ h1,
 h2 {
   font-family: var(--font-heading);
   font-optical-sizing: auto;
-  font-weight: 700;
-  letter-spacing: -0.035em;
+  font-weight: 650;
+  font-stretch: 92%;
+  letter-spacing: -0.028em;
 }
 h3,
 h4,
