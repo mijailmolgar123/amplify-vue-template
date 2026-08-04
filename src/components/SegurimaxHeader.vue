@@ -126,7 +126,7 @@ function closeOffcanvas() {
 .navbar-brand { display: inline-flex; align-items: center; gap: .7rem; margin: 0; color: #fff; }
 .logo { width: 48px; height: 48px; object-fit: contain; }
 .brand-copy { display: grid; line-height: 1.05; }
-.brand-copy strong { font-family: var(--font-heading); font-size: 1.28rem; font-weight: 400; white-space: nowrap; }
+.brand-copy strong { font-family: var(--font-display); font-size: 1.22rem; font-weight: 400; letter-spacing: -.01em; white-space: nowrap; }
 .brand-copy small { margin-top: .36rem; color: rgba(255,255,255,.56); font-size: .62rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
 .primary-nav { flex: 1; align-items: center; justify-content: center; gap: .15rem; }
 .primary-nav .nav-link { position: relative; padding: .6rem .78rem; color: rgba(255,255,255,.75); font-size: .84rem; font-weight: 750; }

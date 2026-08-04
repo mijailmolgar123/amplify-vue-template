@@ -47,7 +47,7 @@ const currentYear = new Date().getFullYear()
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr .8fr 1.25fr; gap: 3rem; }
 .footer-brand { display: flex; align-items: flex-start; gap: 1rem; }
 .footer-brand img { width: 58px; height: 58px; object-fit: contain; }
-.footer-brand strong { font-family: var(--font-heading); font-size: 1.22rem; font-weight: 400; }
+.footer-brand strong { font-family: var(--font-display); font-size: 1.22rem; font-weight: 400; }
 .footer-brand p { max-width: 300px; margin: .65rem 0 0; color: rgba(255,255,255,.53); font-size: .9rem; }
 .site-footer h2 { margin: 0 0 1rem; color: #fff; font-family: var(--font-body); font-size: .8rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .site-footer nav, .footer-contact { display: flex; flex-direction: column; align-items: flex-start; gap: .55rem; }

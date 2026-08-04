@@ -110,7 +110,7 @@ onBeforeUnmount(() => {
 .hero-inner { position: relative; z-index: 1; }
 .hero-copy { max-width: 720px; padding: 4.5rem 0 5.5rem; }
 .hero-eyebrow { margin: 0 0 1.15rem; color: var(--brand-yellow); font-size: .74rem; font-weight: 800; letter-spacing: .19em; }
-h1 { min-height: 2.08em; margin: 0; color: #fff; font-family: var(--font-heading); font-size: clamp(2.9rem, 5.5vw, 5rem); font-weight: 620; font-stretch: 88%; letter-spacing: -.038em; line-height: 1.02; text-wrap: balance; }
+h1 { min-height: 2.08em; margin: 0; color: #fff; font-family: var(--font-display); font-size: clamp(2.8rem, 5.15vw, 4.7rem); font-weight: 400; letter-spacing: -.018em; line-height: 1.04; text-wrap: balance; }
 h1 > span:first-child, .typed-line { display: block; }
 .typed-line { min-height: 1.02em; color: #a9d8b9; }
 .typed-text { display: inline; }
@@ -132,7 +132,7 @@ h1 > span:first-child, .typed-line { display: block; }
   .hero-section { min-height: calc(100svh - 74px); background-position: 48% center; }
   .hero-shade { background: linear-gradient(0deg, rgba(3,24,15,.82) 0%, rgba(3,24,15,.52) 62%, rgba(3,24,15,.18) 100%); }
   .hero-copy { padding: 4rem 0 3.5rem; }
-  h1 { min-height: 2.15em; font-size: clamp(2.65rem, 11.5vw, 3.7rem); }
+  h1 { min-height: 2.2em; font-size: clamp(2.35rem, 10.5vw, 3.25rem); }
   .hero-actions { align-items: stretch; }
   .hero-actions .btn { width: 100%; }
   .hero-whatsapp { justify-content: center; }
