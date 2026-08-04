@@ -2,6 +2,7 @@ import { computed, ref, watch } from 'vue'
 
 export type QuoteProduct = {
   id: string | number
+  sku?: string
   name: string
   image?: string
   brand?: string
@@ -90,7 +91,8 @@ function closeCart() {
 function buildQuoteText(contact: QuoteContact) {
   const productLines = items.value.flatMap((item, index) => {
     const detail = [item.option, item.note].filter(Boolean).join(' · ')
-    return [`${index + 1}. ${item.quantity} × ${item.name}${detail ? ` — ${detail}` : ''}`]
+    const sku = item.sku ? ` [${item.sku}]` : ''
+    return [`${index + 1}. ${item.quantity} × ${item.name}${sku}${detail ? ` — ${detail}` : ''}`]
   })
 
   return [

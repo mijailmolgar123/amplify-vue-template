@@ -33,6 +33,7 @@ export type CatalogBrand = {
 
 export type CatalogProduct = {
   id: number
+  sku?: string
   name: string
   category: CatalogCategoryId
   protectionTypes: ProtectionTypeId[]
@@ -46,7 +47,16 @@ export type CatalogProduct = {
   image: string
 }
 
-const asset = (path: string) => new URL(path, import.meta.url).href
+const catalogAssets = import.meta.glob(
+  ['../assets/products/*/*.{png,jpg,jpeg,webp}', '../assets/socios/*.{png,jpg,jpeg,webp}'],
+  { eager: true, query: '?url', import: 'default' },
+) as Record<string, string>
+
+const asset = (path: string) => {
+  const url = catalogAssets[path]
+  if (!url) throw new Error(`No se encontró el recurso del catálogo: ${path}`)
+  return url
+}
 
 export const catalogCategories: CatalogCategory[] = [
   {
@@ -121,11 +131,12 @@ export const catalogProducts: CatalogProduct[] = [
   },
   {
     id: 3,
-    name: 'Lente Steelpro Turbine',
+    sku: 'P000012',
+    name: 'Lente claro Turbine Steelpro',
     category: 'epps', protectionTypes: ['visual'], brand: 'Steelpro', brandSlug: 'steelpro',
-    excerpt: 'Diseño envolvente para maniobras en campo y laboratorios.',
+    excerpt: 'Lente claro envolvente con inserto de PVC y barra antiimpacto.',
     tags: ['Protección personal'], availability: 'stock', featured: false,
-    image: asset('../assets/products/epps/lente_steelpro_turbine.jpg'),
+    image: asset('../assets/products/epps/lente_steelpro_turbine_claro.jpg'),
   },
   {
     id: 4,
@@ -318,6 +329,78 @@ export const catalogProducts: CatalogProduct[] = [
     excerpt: 'Formato extra grande para patios, almacenes o zonas de comedor.',
     tags: ['Manejo de residuos'], availability: 'stock', featured: false,
     image: asset('../assets/products/kitchenette/bolsa220negrolitros.jpg'),
+  },
+  {
+    id: 28,
+    sku: 'P000226',
+    name: 'Barbiquejo universal MSA V-Gard de 4 puntos',
+    category: 'epps', protectionTypes: ['cabeza', 'altura'], brand: 'MSA', brandSlug: 'msa',
+    excerpt: 'Barboquejo ajustable GA90047, sin partes metálicas y compatible con cascos MSA V-Gard.',
+    tags: ['Accesorio para casco', 'Trabajo en altura'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/epps/barbiquejo_msa_4_puntos_ga90047.jpg'),
+  },
+  {
+    id: 29,
+    sku: 'P0004',
+    name: 'Tapón de oído reutilizable con estuche Steelpro',
+    category: 'epps', protectionTypes: ['auditiva'], brand: 'Steelpro', brandSlug: 'steelpro',
+    excerpt: 'Tapones de triple reborde con cordón y estuche individual para almacenamiento higiénico.',
+    tags: ['Protección auditiva', 'Reutilizable'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/epps/tapon_oido_estuche_steelpro.jpg'),
+  },
+  {
+    id: 30,
+    sku: 'P000552',
+    name: 'Respirador media cara 7502 / 37082 3M',
+    category: 'epps', protectionTypes: ['respiratoria'], brand: '3M', brandSlug: '3m',
+    excerpt: 'Respirador reutilizable mediano de silicona con válvula Cool Flow y conexión tipo bayoneta.',
+    tags: ['Protección respiratoria', 'Talla mediana'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/epps/respirador_media_cara_7502_3m.jpg'),
+  },
+  {
+    id: 31,
+    sku: 'P000013',
+    name: 'Lente oscuro Turbine Steelpro',
+    category: 'epps', protectionTypes: ['visual'], brand: 'Steelpro', brandSlug: 'steelpro',
+    excerpt: 'Lente gris oscuro envolvente con inserto de PVC y barra antiimpacto.',
+    tags: ['Protección visual', 'Lente oscuro'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/epps/lente_steelpro_turbine_oscuro.jpg'),
+  },
+  {
+    id: 32,
+    sku: 'P000576',
+    name: 'Filtro 2097 / 07184 P100 magenta 3M',
+    category: 'epps', protectionTypes: ['respiratoria'], brand: '3M', brandSlug: '3m',
+    excerpt: 'Filtro P100 para partículas con alivio contra niveles molestos de vapores orgánicos.',
+    tags: ['Filtro P100', 'Código NIOSH magenta'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/epps/filtro_2097_07184_p100_3m.jpg'),
+  },
+  {
+    id: 33,
+    sku: 'CM3000',
+    name: 'Orejera para casco CM3000 Steelpro',
+    category: 'epps', protectionTypes: ['auditiva', 'cabeza'], brand: 'Steelpro', brandSlug: 'steelpro',
+    excerpt: 'Orejera amarilla adaptable a casco con copas ABS, brazos metálicos y atenuación NRR de 22 dB.',
+    tags: ['Protección auditiva', 'Adaptable a casco'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/epps/orejera_cm3000_steelpro.jpg'),
+  },
+  {
+    id: 34,
+    sku: 'P00222',
+    name: 'Chaleco drill Fortec naranja con cinta reflectiva',
+    category: 'ropa-industrial', protectionTypes: ['ropa'],
+    excerpt: 'Chaleco naranja de drill poliéster con cierre, bolsillos utilitarios y cinta reflectiva 3M.',
+    tags: ['Alta visibilidad', 'Talla M'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/ropa-industrial/chaleco_drill_fortec_naranja_reflectivo.jpg'),
+  },
+  {
+    id: 35,
+    sku: 'SGP-00003',
+    name: 'Pantalón drill naranja/plomo con cinta reflectiva',
+    category: 'ropa-industrial', protectionTypes: ['ropa'],
+    excerpt: 'Pantalón industrial bicolor con bolsillos cargo, refuerzos plomo y bandas reflectivas.',
+    tags: ['Alta visibilidad', 'Talla L'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/ropa-industrial/pantalon_drill_naranja_plomo_reflectivo.jpg'),
   },
 ]
 

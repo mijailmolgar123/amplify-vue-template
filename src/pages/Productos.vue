@@ -95,6 +95,7 @@
             <div class="product-card__body">
               <p class="product-card__category">{{ getProductClassification(product) }}</p>
               <h3>{{ product.name }}</h3>
+              <p v-if="product.sku" class="product-card__sku">Código {{ product.sku }}</p>
               <p class="product-card__excerpt">{{ product.excerpt }}</p>
               <ul class="product-features" aria-label="Características">
                 <li v-for="tag in product.tags" :key="tag">{{ tag }}</li>
@@ -199,7 +200,7 @@ const filteredProducts = computed(() => {
       const matchesType = selectedProtectionType.value === 'all' || product.protectionTypes.includes(selectedProtectionType.value as never)
       const matchesBrand = selectedBrand.value === 'all' || product.brandSlug === selectedBrand.value
       const matchesAvailability = availabilityFilter.value === 'all' || product.availability === availabilityFilter.value
-      const haystack = [product.name, product.excerpt, product.brand ?? '', ...product.tags].join(' ').toLocaleLowerCase('es')
+      const haystack = [product.sku ?? '', product.name, product.excerpt, product.brand ?? '', ...product.tags].join(' ').toLocaleLowerCase('es')
       return matchesCategory && matchesType && matchesBrand && matchesAvailability && (!query || haystack.includes(query))
     })
     .sort((a, b) => {
@@ -245,6 +246,7 @@ function addProductToQuote(product: CatalogProduct) {
   addItem({
     id: product.id,
     name: product.name,
+    sku: product.sku,
     detail: product.excerpt,
     image: product.image,
     brand: product.brand,
@@ -287,6 +289,7 @@ function addProductToQuote(product: CatalogProduct) {
 .product-card__body { display: flex; flex: 1; flex-direction: column; padding: 1.3rem 1.3rem 1rem; border-top: 1px solid rgba(8,43,29,.08); }
 .product-card__category { margin: 0 0 .55rem; color: var(--brand-green); font-size: .68rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
 .product-card h3 { margin: 0 0 .55rem; color: var(--brand-ink); font-size: 1.08rem; line-height: 1.25; }
+.product-card__sku { margin: -.25rem 0 .6rem; color: #7b857f; font-size: .7rem; font-weight: 750; letter-spacing: .04em; }
 .product-card__excerpt { margin: 0 0 1rem; color: #68736c; font-size: .88rem; line-height: 1.55; }
 .product-features { display: flex; flex-wrap: wrap; gap: .4rem; margin: auto 0 1rem; padding: 0; list-style: none; }
 .product-features li { padding: .3rem .45rem; border-radius: 5px; color: #536058; background: #f2f5f2; font-size: .7rem; }

@@ -55,6 +55,7 @@ function addProduct(product: CatalogProduct) {
   addItem({
     id: product.id,
     name: product.name,
+    sku: product.sku,
     brand: product.brand,
     detail: product.excerpt,
     image: product.image,

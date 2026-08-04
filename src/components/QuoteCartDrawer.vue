@@ -24,6 +24,7 @@
                 <div class="quote-item__content">
                   <span v-if="item.brand" class="quote-item__brand">{{ item.brand }}</span>
                   <h3>{{ item.name }}</h3>
+                  <span v-if="item.sku" class="quote-item__sku">Código {{ item.sku }}</span>
                   <p v-if="item.detail">{{ item.detail }}</p>
                   <div class="quote-item__controls">
                     <label :for="`quantity-${item.id}`">Cantidad</label>
@@ -253,6 +254,7 @@ onBeforeUnmount(() => {
 .quote-item__media img { width: 100%; height: 100%; object-fit: contain; }
 .quote-item__brand { display: block; color: #187847; font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .quote-item h3 { margin: .15rem 0; font-family: var(--font-body); font-size: 1rem; font-weight: 800; line-height: 1.25; }
+.quote-item__sku { display: block; margin: 0 0 .35rem; color: #7b857f; font-size: .7rem; font-weight: 750; letter-spacing: .04em; }
 .quote-item p { margin: 0 0 .65rem; color: #68736c; font-size: .82rem; }
 .quote-remove { border: 0; background: transparent; color: #8b948e; }
 .quote-item__controls { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin: .7rem 0; }
