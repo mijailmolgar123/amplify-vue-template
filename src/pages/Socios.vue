@@ -23,7 +23,8 @@
         <div class="brand-grid">
           <article v-for="brand in brands" :key="brand.id" class="brand-item">
             <div class="brand-logo">
-              <img :src="brand.logo" :alt="brand.name" loading="lazy" />
+              <img v-if="brand.logo" :src="brand.logo" :alt="brand.name" loading="lazy" />
+              <span v-else class="brand-logo__text" aria-hidden="true">{{ brand.name }}</span>
             </div>
             <div class="brand-copy">
               <div>
@@ -105,6 +106,7 @@ const brands = catalogBrands.map((brand) => {
 .brand-logo { display: grid; place-items: center; min-width: 0; padding: 2rem; background: #f5f7f4; }
 .brand-logo img { width: 100%; height: 115px; object-fit: contain; filter: grayscale(1); transition: filter .2s ease, transform .2s ease; }
 .brand-item:hover .brand-logo img { filter: grayscale(0); transform: scale(1.035); }
+.brand-logo__text { color: var(--brand-forest); font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 3.1rem); font-weight: 750; letter-spacing: -.04em; }
 .brand-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 1.6rem; }
 .brand-copy h3 { margin: 0 0 .45rem; color: var(--brand-ink); font-size: 1.25rem; }
 .brand-copy p { margin: 0; color: #6e7972; font-size: .88rem; }

@@ -1,4 +1,4 @@
-export type CatalogCategoryId = 'epps' | 'epcs' | 'ropa-industrial' | 'oficina' | 'kitchenette'
+export type CatalogCategoryId = 'epps' | 'epcs' | 'ropa-industrial' | 'soldadura' | 'oficina' | 'kitchenette'
 
 export type ProtectionTypeId =
   | 'cabeza'
@@ -8,6 +8,7 @@ export type ProtectionTypeId =
   | 'auditiva'
   | 'ropa'
   | 'altura'
+  | 'soldadura'
   | 'colectiva'
   | 'limpieza'
 
@@ -78,6 +79,12 @@ export const catalogCategories: CatalogCategory[] = [
     description: 'Prendas de trabajo y alta visibilidad.',
   },
   {
+    id: 'soldadura',
+    label: 'Soldadura y oxicorte',
+    shortLabel: 'Soldadura',
+    description: 'Equipos y accesorios para corte y soldadura oxicombustible.',
+  },
+  {
     id: 'oficina',
     label: 'Limpieza industrial',
     shortLabel: 'Limpieza industrial',
@@ -99,6 +106,7 @@ export const protectionTypes: ProtectionType[] = [
   { id: 'auditiva', label: 'Protección auditiva', description: 'Orejeras y atenuación de ruido', icon: 'fa-solid fa-headphones' },
   { id: 'ropa', label: 'Ropa industrial', description: 'Alta visibilidad y trabajo de campo', icon: 'fa-solid fa-shirt' },
   { id: 'altura', label: 'Trabajo en altura', description: 'Protección para labores elevadas', icon: 'fa-solid fa-person-falling' },
+  { id: 'soldadura', label: 'Soldadura y oxicorte', description: 'Equipos, sopletes y accesorios', icon: 'fa-solid fa-fire-flame-curved' },
   { id: 'colectiva', label: 'Protección colectiva', description: 'Señalización y control de áreas', icon: 'fa-solid fa-road-barrier' },
   { id: 'limpieza', label: 'Limpieza y residuos', description: 'Suministros para mantenimiento', icon: 'fa-solid fa-broom' },
 ]
@@ -110,6 +118,7 @@ export const catalogBrands: CatalogBrand[] = [
   { id: 'clute', name: 'Clute', logo: asset('../assets/socios/clute-logo.png') },
   { id: 'delta-plus', name: 'Delta Plus', logo: asset('../assets/socios/delta-plus-logo.png') },
   { id: 'ansell', name: 'Ansell', logo: asset('../assets/socios/ansell-logo.png') },
+  { id: 'victor', name: 'Victor' },
 ]
 
 export const catalogProducts: CatalogProduct[] = [
@@ -401,6 +410,51 @@ export const catalogProducts: CatalogProduct[] = [
     excerpt: 'Pantalón industrial bicolor con bolsillos cargo, refuerzos plomo y bandas reflectivas.',
     tags: ['Alta visibilidad', 'Talla L'], availability: 'preorder', featured: false,
     image: asset('../assets/products/ropa-industrial/pantalon_drill_naranja_plomo_reflectivo.jpg'),
+  },
+  {
+    id: 36,
+    sku: 'PRE-c8dda5ab6',
+    name: 'Arnés soldador MSA Gravity 278317-3 de 4 anillos',
+    category: 'epps', protectionTypes: ['altura'], brand: 'MSA', brandSlug: 'msa',
+    excerpt: 'Arnés de cuerpo completo con cinta de Kevlar/Nomex para trabajos en altura expuestos a soldadura y altas temperaturas.',
+    tags: ['Trabajo en altura', 'Aplicaciones de soldadura'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/epps/arnes_soldador_msa_gravity_278317_3.jpg'),
+  },
+  {
+    id: 37,
+    sku: 'PRE-20713f56',
+    name: 'Retráctil MSA V-TEC PFL 63013-00A',
+    category: 'epps', protectionTypes: ['altura'], brand: 'MSA', brandSlug: 'msa',
+    excerpt: 'Limitador personal de caída de una pierna, cinta retráctil de 3 m, carcasa transparente y gancho AL36CL.',
+    tags: ['Trabajo en altura', 'Cinta retráctil de 3 m'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/epps/retractil_msa_vtec_pfl_63013_00a.jpg'),
+  },
+  {
+    id: 38,
+    sku: 'PRE-59688eba',
+    name: 'Equipo de oxicorte Victor Journeyman II EDGE 2.0',
+    category: 'soldadura', protectionTypes: ['soldadura'], brand: 'Victor', brandSlug: 'victor',
+    excerpt: 'Kit industrial oxiacetilénico con reguladores EDGE 2.0, mango WH315FC+, aditamento CA2460+, manguera y accesorios.',
+    tags: ['Oxicorte', 'Kit profesional'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/soldadura/equipo_oxicorte_victor_journeyman_ii.jpg'),
+  },
+  {
+    id: 39,
+    sku: 'PRE-d2d957b6',
+    name: 'Aditamento de corte Victor CA2460+',
+    category: 'soldadura', protectionTypes: ['soldadura'], brand: 'Victor', brandSlug: 'victor',
+    excerpt: 'Aditamento de servicio pesado a 90° con cuerpo de latón forjado y tubos de acero inoxidable.',
+    tags: ['Corte oxicombustible', 'Serie 300'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/soldadura/aditamento_corte_victor_ca2460.jpg'),
+  },
+  {
+    id: 40,
+    sku: 'PRE-a66fe327',
+    name: 'Mango de soldar Victor WH315FC+',
+    category: 'soldadura', protectionTypes: ['soldadura'], brand: 'Victor', brandSlug: 'victor',
+    excerpt: 'Mango de servicio pesado con arrestadores de llama y válvulas de retención integradas.',
+    tags: ['Soldadura oxicombustible', 'Servicio pesado'], availability: 'preorder', featured: false,
+    image: asset('../assets/products/soldadura/mango_soldar_victor_wh315fc.jpg'),
   },
 ]
 
