@@ -89,12 +89,12 @@
         <div v-if="filteredProducts.length" class="product-grid">
           <article v-for="product in filteredProducts" :key="product.id" class="product-card">
             <div v-if="product.status" class="product-card__badge">{{ product.status }}</div>
-            <div class="product-card__media">
+            <RouterLink :to="`/productos/${getProductSlug(product)}`" class="product-card__media">
               <img :src="product.image" :alt="product.name" loading="lazy" />
-            </div>
+            </RouterLink>
             <div class="product-card__body">
               <p class="product-card__category">{{ getProductClassification(product) }}</p>
-              <h3>{{ product.name }}</h3>
+              <h3><RouterLink :to="`/productos/${getProductSlug(product)}`">{{ product.name }}</RouterLink></h3>
               <p v-if="product.sku" class="product-card__sku">Código {{ product.sku }}</p>
               <p class="product-card__excerpt">{{ product.excerpt }}</p>
               <ul class="product-features" aria-label="Características">
@@ -152,6 +152,7 @@ import {
   type CatalogProduct,
 } from '@/data/catalog'
 import { useQuoteCart } from '@/composables/useQuoteCart'
+import { getProductSlug } from '@/utils/productSlug'
 
 const route = useRoute()
 const { addItem, openCart } = useQuoteCart()
@@ -283,12 +284,14 @@ function addProductToQuote(product: CatalogProduct) {
 .product-card { position: relative; display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: 1px solid rgba(8,43,29,.12); border-radius: 12px; background: #fff; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
 .product-card:hover { border-color: rgba(24,120,71,.35); box-shadow: 0 20px 42px rgba(8,43,29,.1); transform: translateY(-3px); }
 .product-card__badge { position: absolute; z-index: 2; top: .8rem; left: .8rem; padding: .35rem .55rem; border-radius: 5px; color: var(--brand-ink); background: var(--brand-yellow); font-size: .65rem; font-weight: 900; text-transform: uppercase; }
-.product-card__media { height: 250px; padding: 1.3rem; background: #fff; }
+.product-card__media { height: 250px; display: block; padding: 1.3rem; background: #fff; }
 .product-card__media img { width: 100%; height: 100%; object-fit: contain; transition: transform .28s ease; }
 .product-card:hover .product-card__media img { transform: scale(1.035); }
 .product-card__body { display: flex; flex: 1; flex-direction: column; padding: 1.3rem 1.3rem 1rem; border-top: 1px solid rgba(8,43,29,.08); }
 .product-card__category { margin: 0 0 .55rem; color: var(--brand-green); font-size: .68rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
 .product-card h3 { margin: 0 0 .55rem; color: var(--brand-ink); font-size: 1.08rem; line-height: 1.25; }
+.product-card h3 a { color: inherit; text-decoration: none; }
+.product-card h3 a:hover { color: var(--brand-green); }
 .product-card__sku { margin: -.25rem 0 .6rem; color: #7b857f; font-size: .7rem; font-weight: 750; letter-spacing: .04em; }
 .product-card__excerpt { margin: 0 0 1rem; color: #68736c; font-size: .88rem; line-height: 1.55; }
 .product-features { display: flex; flex-wrap: wrap; gap: .4rem; margin: auto 0 1rem; padding: 0; list-style: none; }

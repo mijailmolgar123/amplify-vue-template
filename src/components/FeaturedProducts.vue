@@ -14,13 +14,13 @@
 
       <div class="featured-grid">
         <article v-for="product in products" :key="product.id" class="featured-card">
-          <div class="product-figure">
+          <RouterLink :to="`/productos/${getProductSlug(product)}`" class="product-figure">
             <span v-if="product.status" class="product-badge">{{ product.status }}</span>
             <img :src="product.image" :alt="product.name" loading="lazy" />
-          </div>
+          </RouterLink>
           <div class="featured-card__body">
             <span class="product-brand">{{ product.brand }}</span>
-            <h3>{{ product.name }}</h3>
+            <h3><RouterLink :to="`/productos/${getProductSlug(product)}`">{{ product.name }}</RouterLink></h3>
             <p>{{ product.excerpt }}</p>
             <div class="product-status">
               <span><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Disponible</span>
@@ -47,6 +47,7 @@
 <script setup lang="ts">
 import { catalogProducts, type CatalogProduct } from '@/data/catalog'
 import { useQuoteCart } from '@/composables/useQuoteCart'
+import { getProductSlug } from '@/utils/productSlug'
 
 const { addItem, itemCount, lastAddedName, openCart } = useQuoteCart()
 const products = catalogProducts.filter((product) => product.featured).slice(0, 6)
@@ -78,6 +79,8 @@ function addProduct(product: CatalogProduct) {
 .featured-card__body { display: flex; flex-direction: column; min-width: 0; padding: 1.3rem; }
 .product-brand { color: var(--brand-green); font-size: .7rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
 .featured-card h3 { margin: .4rem 0 .55rem; color: var(--brand-ink); font-size: 1.18rem; line-height: 1.22; }
+.featured-card h3 a { color: inherit; text-decoration: none; }
+.featured-card h3 a:hover { color: var(--brand-green); }
 .featured-card p { margin: 0; color: #68736c; font-size: .9rem; line-height: 1.5; }
 .product-status { margin-top: auto; padding: 1rem 0 .75rem; color: var(--brand-green); font-size: .8rem; font-weight: 800; }
 .add-quote { min-height: 45px; display: inline-flex; align-items: center; justify-content: center; gap: .55rem; border: 0; border-radius: 7px; color: var(--brand-ink); background: var(--brand-yellow); font-size: .83rem; font-weight: 900; transition: background .2s ease, transform .2s ease; }

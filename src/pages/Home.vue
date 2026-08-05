@@ -136,7 +136,9 @@ const processSteps = [
   { title: 'Envía tu solicitud', text: 'Comparte la lista por WhatsApp o correo.', icon: 'fa-solid fa-paper-plane' },
 ]
 
-const brands = catalogBrands.map((brand) => ({ name: brand.name, src: brand.logo! }))
+const brands = catalogBrands
+  .filter((brand) => Boolean(brand.logo))
+  .map((brand) => ({ name: brand.name, src: brand.logo! }))
 
 const certifications = [
   { src: sgsLogo, alt: 'Homologación SGS' },
