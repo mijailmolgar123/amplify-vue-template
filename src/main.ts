@@ -9,9 +9,5 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 
 import '@/assets/base.css'
 import '@/assets/main.css'
-import { Amplify } from 'aws-amplify'
-import outputs from '../amplify_outputs.json'
-
-Amplify.configure(outputs)
 
 createApp(App).use(router).mount('#app')
