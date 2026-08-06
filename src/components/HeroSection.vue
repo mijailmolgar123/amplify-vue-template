@@ -105,7 +105,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.hero-section { position: relative; min-height: calc(100svh - 82px); display: flex; align-items: center; overflow: hidden; color: #fff; background: url('@/assets/fondo.png') 42% center / cover no-repeat; }
+.hero-section { position: relative; min-height: calc(100svh - 82px); display: flex; align-items: center; overflow: hidden; color: #fff; background: url('@/assets/fondo-clean.png') 42% center / cover no-repeat; }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,24,15,.78) 0%, rgba(3,24,15,.58) 42%, rgba(3,24,15,.22) 74%, rgba(3,24,15,.08) 100%), linear-gradient(0deg, rgba(3,24,15,.36), transparent 48%); }
 .hero-inner { position: relative; z-index: 1; }
 .hero-copy { max-width: 720px; padding: 4.5rem 0 5.5rem; }

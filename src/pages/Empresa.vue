@@ -128,7 +128,7 @@ const documents = [
 
 <style scoped>
 .empresa-page { color: var(--brand-ink); background: #fff; }
-.empresa-hero { padding: clamp(4.5rem, 9vw, 8.5rem) 0; color: #fff; background: linear-gradient(115deg, rgba(4,29,19,.96), rgba(8,43,29,.82)), url('@/assets/fondo.png') center / cover; }
+.empresa-hero { padding: clamp(4.5rem, 9vw, 8.5rem) 0; color: #fff; background: linear-gradient(115deg, rgba(4,29,19,.96), rgba(8,43,29,.82)), url('@/assets/fondo-clean.png') center / cover; }
 .empresa-hero__inner { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr); align-items: end; gap: clamp(3rem, 8vw, 8rem); }
 .empresa-hero h1 { max-width: 800px; margin: .5rem 0 1rem; color: #fff; font-family: var(--font-heading); font-size: clamp(2.7rem, 6vw, 5.5rem); font-weight: 620; letter-spacing: -.035em; line-height: 1.02; }
 .empresa-hero__inner > div > p:last-of-type { max-width: 620px; color: rgba(255,255,255,.74); font-size: 1.08rem; }
