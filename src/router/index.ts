@@ -7,11 +7,15 @@ import { absoluteSiteUrl, applySeo, type SeoConfig } from '@/utils/seo'
 const routes = [
   {
     path: '/', name: 'home', component: Home,
-    meta: { seo: { title: 'Segurimax Perú | EPP y seguridad industrial para empresas', description: 'Cotiza equipos de protección personal, ropa industrial, señalización y suministros para empresas en Perú.', path: '/' } },
+    meta: { seo: { title: 'Abastecimiento industrial y EPP para empresas | Segurimax Perú', description: 'Gestionamos EPP, ropa de trabajo, herramientas, equipos e insumos industriales. Envía tu requerimiento y consolida tu compra con Segurimax Perú.', path: '/' } },
+  },
+  {
+    path: '/soluciones', name: 'soluciones', component: () => import('@/pages/Soluciones.vue'),
+    meta: { seo: { title: 'Soluciones de abastecimiento industrial', description: 'Procura de EPP, ropa, herramientas, equipos, insumos operativos y productos industriales bajo pedido para empresas en Perú.', path: '/soluciones' } },
   },
   {
     path: '/productos', name: 'productos', component: () => import('@/pages/Productos.vue'),
-    meta: { seo: { title: 'Catálogo de EPP y seguridad industrial', description: 'Explora cascos, guantes, respiradores, lentes, protección auditiva, trabajo en altura, ropa industrial y equipos de oxicorte.', path: '/productos' } },
+    meta: { seo: { title: 'Abastecimiento industrial, EPP y equipos para empresas', description: 'Explora el catálogo referencial de Segurimax o solicita productos industriales, EPP, herramientas e insumos especiales bajo pedido.', path: '/productos' } },
   },
   {
     path: '/productos/:slug',
@@ -24,13 +28,17 @@ const routes = [
     meta: { seo: { title: 'Empresa', description: 'Conoce cómo Segurimax atiende y consolida requerimientos de seguridad industrial para empresas en Perú.', path: '/empresa' } },
   },
   {
+    path: '/como-trabajamos', name: 'como-trabajamos', component: () => import('@/pages/ComoTrabajamos.vue'),
+    meta: { seo: { title: 'Cómo gestionamos requerimientos empresariales', description: 'Conoce el proceso de Segurimax para recibir, validar, buscar alternativas, consolidar propuestas y coordinar requerimientos B2B.', path: '/como-trabajamos' } },
+  },
+  {
     path: '/marcas', name: 'marcas', component: () => import('@/pages/Socios.vue'),
     meta: { seo: { title: 'Marcas de seguridad industrial', description: 'Consulta productos 3M, MSA, Steelpro, Delta Plus, Ansell, Clute, Victor y otras marcas de seguridad industrial.', path: '/marcas' } },
   },
   { path: '/socios',     redirect: '/marcas' },
   {
     path: '/contacto', name: 'contacto', component: () => import('@/pages/Contacto.vue'),
-    meta: { seo: { title: 'Contacto y cotizaciones', description: 'Solicita una cotización de EPP, seguridad industrial y suministros empresariales por WhatsApp o correo.', path: '/contacto' } },
+    meta: { seo: { title: 'Enviar requerimiento de abastecimiento', description: 'Solicita EPP, herramientas, equipos, insumos industriales o productos especiales por WhatsApp o correo con Segurimax Perú.', path: '/contacto' } },
   },
   {
     path: '/404', name: 'not-found', component: () => import('@/pages/NotFound.vue'),

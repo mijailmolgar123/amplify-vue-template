@@ -42,7 +42,7 @@
           <div class="product-actions">
             <button type="button" @click="addToQuote">
               <i class="fa-solid fa-plus" aria-hidden="true"></i>
-              Agregar a cotización
+              Agregar al requerimiento
             </button>
             <a :href="whatsAppUrl" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>

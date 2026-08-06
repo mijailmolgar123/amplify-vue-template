@@ -5,23 +5,23 @@
         <img src="@/assets/logo-segurimax.png" alt="Segurimax Perú" />
         <div>
           <strong>Segurimax Perú</strong>
-          <p>Equipos de protección y seguridad industrial para empresas.</p>
+          <p>Abastecimiento B2B especializado en seguridad industrial, equipamiento e insumos para operaciones.</p>
         </div>
       </div>
 
-      <nav aria-label="Productos">
-        <h2>Productos</h2>
-        <RouterLink :to="{ path: '/productos', query: { categoria: 'epps' } }">Equipos EPP</RouterLink>
-        <RouterLink :to="{ path: '/productos', query: { categoria: 'ropa-industrial' } }">Ropa industrial</RouterLink>
-        <RouterLink :to="{ path: '/productos', query: { categoria: 'epcs' } }">Protección colectiva</RouterLink>
-        <RouterLink to="/productos">Ver catálogo</RouterLink>
+      <nav aria-label="Soluciones">
+        <h2>Abastecimiento</h2>
+        <RouterLink to="/soluciones">Soluciones</RouterLink>
+        <RouterLink to="/productos">Catálogo referencial</RouterLink>
+        <RouterLink to="/como-trabajamos">Cómo trabajamos</RouterLink>
+        <RouterLink to="/contacto">Enviar requerimiento</RouterLink>
       </nav>
 
       <nav aria-label="Empresa">
         <h2>Segurimax</h2>
         <RouterLink to="/empresa">Nuestra empresa</RouterLink>
         <RouterLink to="/marcas">Marcas</RouterLink>
-        <RouterLink to="/contacto">Contacto</RouterLink>
+        <RouterLink to="/contacto">Contacto comercial</RouterLink>
       </nav>
 
       <div class="footer-contact">
@@ -33,7 +33,7 @@
     </div>
     <div class="container footer-bottom">
       <span>© {{ currentYear }} Segurimax Perú</span>
-      <span>Seguridad para quienes hacen que el Perú avance.</span>
+      <span>Requerimientos industriales, gestionados en una sola atención.</span>
     </div>
   </footer>
 </template>

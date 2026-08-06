@@ -4,27 +4,27 @@
       <div class="container empresa-hero__inner">
         <div>
           <p class="section-kicker">SEGURIMAX PERÚ</p>
-          <h1>Abastecimiento industrial, sin vueltas.</h1>
+          <h1>Un aliado para resolver requerimientos operativos.</h1>
           <p>
-            Reunimos EPP, protección colectiva y suministros operativos en una sola solicitud.
+            Especializados en seguridad industrial y preparados para gestionar equipamiento, herramientas e insumos en una sola atención.
           </p>
           <div class="empresa-actions">
-            <RouterLink to="/productos" class="btn btn-pill btn-pill-primary">Ver productos</RouterLink>
-            <RouterLink to="/contacto" class="text-link">Hablar con ventas <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></RouterLink>
+            <RouterLink to="/soluciones" class="btn btn-pill btn-pill-primary">Ver soluciones</RouterLink>
+            <RouterLink to="/contacto" class="text-link">Enviar requerimiento <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></RouterLink>
           </div>
         </div>
-        <dl class="catalog-facts" aria-label="Información del catálogo">
+        <dl class="catalog-facts" aria-label="Capacidades de atención">
           <div>
-            <dt>{{ catalogProducts.length }}</dt>
-            <dd>productos publicados</dd>
+            <dt><i class="fa-solid fa-list-check" aria-hidden="true"></i></dt>
+            <dd>Requerimientos consolidados</dd>
           </div>
           <div>
-            <dt>{{ catalogBrands.length }}</dt>
-            <dd>marcas destacadas</dd>
+            <dt><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></dt>
+            <dd>Búsqueda de alternativas</dd>
           </div>
           <div>
-            <dt>2</dt>
-            <dd>canales de cotización</dd>
+            <dt><i class="fa-solid fa-comments" aria-hidden="true"></i></dt>
+            <dd>Atención comercial directa</dd>
           </div>
         </dl>
       </div>
@@ -34,8 +34,8 @@
       <div class="container service-layout">
         <div class="service-intro">
           <p class="section-kicker">CÓMO TE ATENDEMOS</p>
-          <h2>Una lista clara para compras y operaciones.</h2>
-          <p>El catálogo concentra la información necesaria para preparar un requerimiento inicial.</p>
+          <h2>Ordenamos la necesidad antes de cotizar.</h2>
+          <p>El catálogo es una referencia. La gestión comercial empieza con la información real de tu operación.</p>
         </div>
         <ol class="service-steps">
           <li v-for="(step, index) in serviceSteps" :key="step.title">
@@ -53,10 +53,10 @@
       <div class="container">
         <header class="section-heading-row">
           <div>
-            <p class="section-kicker">LO QUE PUEDES COTIZAR</p>
-            <h2>Líneas publicadas en el catálogo.</h2>
+            <p class="section-kicker">NÚCLEO DE EXPERIENCIA</p>
+            <h2>Seguridad industrial y más.</h2>
           </div>
-          <RouterLink to="/productos">Explorar catálogo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></RouterLink>
+          <RouterLink to="/soluciones">Ver todas las soluciones <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></RouterLink>
         </header>
         <div class="line-list">
           <RouterLink
@@ -104,20 +104,22 @@
 </template>
 
 <script setup lang="ts">
-import { catalogBrands, catalogProducts } from '@/data/catalog'
 import sgsLogo from '@/assets/logo_sgs-2.jpg'
 import hodelpeLogo from '@/assets/LOGOTIPO_DE_HOMOLOGADO_-_CORPORACION_HODELPE_SAC.jpg'
 
 const serviceSteps = [
-  { title: 'Explora', text: 'Filtra por tipo de protección, categoría o marca.' },
-  { title: 'Agrupa', text: 'Agrega productos y define cantidades u observaciones.' },
-  { title: 'Envía', text: 'Comparte la solicitud por WhatsApp o correo.' },
+  { title: 'Recibimos', text: 'Productos seleccionados, listas, códigos, fotografías o fichas.' },
+  { title: 'Validamos', text: 'Revisamos cantidades, aplicación, marca y condiciones.' },
+  { title: 'Buscamos', text: 'Evaluamos alternativas técnicas y comerciales disponibles.' },
+  { title: 'Consolidamos', text: 'Organizamos las partidas en una sola propuesta.' },
+  { title: 'Coordinamos', text: 'Alineamos la entrega según lo acordado.' },
 ]
 
 const mainLines = [
   { id: 'epp', title: 'Protección personal', text: 'Cabeza, manos, respiración, vista y oído.', icon: 'fa-solid fa-helmet-safety', to: { path: '/productos', query: { categoria: 'epps' } } },
   { id: 'ropa', title: 'Ropa industrial', text: 'Prendas para campo y alta visibilidad.', icon: 'fa-solid fa-shirt', to: { path: '/productos', query: { categoria: 'ropa-industrial' } } },
   { id: 'colectiva', title: 'Protección colectiva', text: 'Señalización y control de áreas.', icon: 'fa-solid fa-road-barrier', to: { path: '/productos', query: { categoria: 'epcs' } } },
+  { id: 'especiales', title: 'Productos especiales', text: 'Búsqueda por código, ficha o aplicación.', icon: 'fa-solid fa-magnifying-glass-plus', to: '/soluciones#especiales' },
 ]
 
 const documents = [

@@ -3,8 +3,8 @@
     <div class="container">
       <header class="featured-header">
         <div>
-          <p class="section-kicker">LOS MÁS SOLICITADOS</p>
-          <h2 class="section-heading">EPP para trabajar seguro.</h2>
+          <p class="section-kicker">CATÁLOGO REFERENCIAL</p>
+          <h2 class="section-heading">Productos que ya puedes identificar.</h2>
         </div>
         <RouterLink to="/productos" class="catalog-link">
           Ver catálogo completo
@@ -27,7 +27,7 @@
             </div>
             <button class="add-quote" type="button" @click="addProduct(product)">
               <i class="fa-solid fa-plus" aria-hidden="true"></i>
-              Agregar a cotización
+              Agregar al requerimiento
             </button>
           </div>
         </article>
@@ -38,7 +38,7 @@
       <button v-if="lastAddedName" class="added-feedback" type="button" @click="openCart">
         <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
         <span><strong>Agregado</strong>{{ lastAddedName }}</span>
-        <span>{{ itemCount }} {{ itemCount === 1 ? 'unidad' : 'unidades' }} · Ver lista</span>
+        <span>{{ itemCount }} {{ itemCount === 1 ? 'unidad' : 'unidades' }} · Ver requerimiento</span>
       </button>
     </Transition>
   </section>

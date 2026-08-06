@@ -6,7 +6,7 @@
           <img src="@/assets/logo-segurimax.png" alt="Segurimax Perú" class="logo" />
           <div class="brand-copy">
             <strong>Segurimax Perú</strong>
-            <small>Seguridad industrial</small>
+            <small>Abastecimiento B2B</small>
           </div>
         </a>
 
@@ -23,11 +23,11 @@
           <button
             class="quote-action"
             type="button"
-            :aria-label="`Abrir mi cotización. ${itemCount} productos seleccionados`"
+            :aria-label="`Abrir mi requerimiento. ${itemCount} unidades seleccionadas`"
             @click="openCart"
           >
             <i class="fa-solid fa-list-check" aria-hidden="true"></i>
-            <span class="quote-action__label">Mi cotización</span>
+            <span class="quote-action__label">Mi requerimiento</span>
             <span class="quote-count" aria-label="Productos seleccionados">{{ itemCount }}</span>
           </button>
           <button
@@ -66,7 +66,7 @@
         </nav>
         <button class="mobile-quote" type="button" @click="openCartFromMenu">
           <i class="fa-solid fa-list-check" aria-hidden="true"></i>
-          Abrir mi cotización
+          Abrir mi requerimiento
           <span>{{ itemCount }}</span>
         </button>
         <a class="mobile-whatsapp" href="https://wa.me/51996665221" target="_blank" rel="noopener noreferrer">
@@ -87,9 +87,10 @@ const { itemCount, openCart } = useQuoteCart()
 
 const navLinks = [
   { label: 'Inicio', path: '/' },
+  { label: 'Soluciones', path: '/soluciones' },
   { label: 'Productos', path: '/productos' },
+  { label: 'Cómo trabajamos', path: '/como-trabajamos' },
   { label: 'Empresa', path: '/empresa' },
-  { label: 'Marcas', path: '/marcas' },
   { label: 'Contacto', path: '/contacto' },
 ]
 

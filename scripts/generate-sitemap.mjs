@@ -5,7 +5,7 @@ import { getProductSlug, readCatalogProducts } from './catalog-seo-data.mjs'
 const siteUrl = 'https://segurimax-peru.com'
 const xmlOutputPath = fileURLToPath(new URL('../public/sitemap.xml', import.meta.url))
 const textOutputPath = fileURLToPath(new URL('../public/sitemap.txt', import.meta.url))
-const staticRoutes = ['/', '/productos', '/empresa', '/marcas', '/contacto']
+const staticRoutes = ['/', '/soluciones', '/productos', '/como-trabajamos', '/empresa', '/marcas', '/contacto']
 const productRoutes = readCatalogProducts().map((product) => `/productos/${getProductSlug(product)}`)
 
 const urls = [...staticRoutes, ...productRoutes]

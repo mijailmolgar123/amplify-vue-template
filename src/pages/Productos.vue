@@ -2,11 +2,26 @@
   <main class="page page-productos">
     <section class="productos-hero">
       <div class="container productos-hero__inner">
-        <p class="eyebrow">CATÁLOGO SEGURIMAX</p>
-        <h1>Encuentra. Agrega. Cotiza.</h1>
-        <p>Filtra por riesgo o marca y envía un solo requerimiento a ventas.</p>
+        <p class="eyebrow">CATÁLOGO REFERENCIAL + PROCURA</p>
+        <h1>Productos y soluciones para tu operación.</h1>
+        <p>Explora referencias disponibles o bajo pedido. Si no está publicado, envíanos la descripción, código o ficha técnica y lo gestionamos.</p>
+        <div class="productos-hero__actions">
+          <a href="#buscador">Buscar en el catálogo</a>
+          <button type="button" @click="openManualRequest()">Enviar lista o requerimiento</button>
+        </div>
       </div>
       <div class="hero-grid-overlay" aria-hidden="true"></div>
+    </section>
+
+    <section class="special-request">
+      <div class="container special-request__inner">
+        <span class="special-request__icon"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></span>
+        <div>
+          <strong>¿Buscas algo que no aparece aquí?</strong>
+          <p>El catálogo es una muestra de nuestras líneas. También buscamos productos especiales y alternativas equivalentes.</p>
+        </div>
+        <button type="button" @click="openManualRequest(searchQuery)">Cotizar fuera del catálogo</button>
+      </div>
     </section>
 
     <section class="productos-controls" id="buscador">
@@ -78,7 +93,7 @@
           <div>
             <p class="eyebrow eyebrow--green">RESULTADOS</p>
             <h2>{{ resultsTitle }}</h2>
-            <p>Mostrando {{ filteredProducts.length }} de {{ catalogProducts.length }} productos.</p>
+            <p>{{ filteredProducts.length }} {{ filteredProducts.length === 1 ? 'referencia encontrada' : 'referencias encontradas' }}.</p>
           </div>
           <div class="results-meta">
             <span>{{ activeFiltersLabel }}</span>
@@ -110,7 +125,7 @@
             </div>
             <button class="add-product" type="button" @click="addProductToQuote(product)">
               <i class="fa-solid fa-plus" aria-hidden="true"></i>
-              Agregar a cotización
+              Agregar al requerimiento
             </button>
           </article>
         </div>
@@ -118,8 +133,11 @@
         <div v-else class="empty-state">
           <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           <h2>No encontramos productos con esos filtros.</h2>
-          <p>Prueba otra categoría o limpia los filtros para volver al catálogo.</p>
-          <button type="button" @click="resetFilters">Ver todo el catálogo</button>
+          <p>Podemos buscarlo aunque no esté publicado. Envíanos el término, código o descripción que usaste.</p>
+          <div class="empty-actions">
+            <button type="button" @click="openManualRequest(searchQuery)">Solicitar este producto</button>
+            <button type="button" class="empty-secondary" @click="resetFilters">Ver todo el catálogo</button>
+          </div>
         </div>
       </div>
     </section>
@@ -127,12 +145,12 @@
     <section class="productos-cta">
       <div class="container productos-cta__inner">
         <div>
-          <p class="eyebrow">TU REQUERIMIENTO EN UN SOLO LUGAR</p>
-          <h2>¿Ya elegiste tus productos?</h2>
+          <p class="eyebrow">DISPONIBLE, BAJO PEDIDO O ESPECIAL</p>
+          <h2>Una sola atención para todo tu requerimiento.</h2>
         </div>
         <div class="productos-cta__actions">
-          <button type="button" @click="openCart">Abrir mi cotización</button>
-          <RouterLink to="/contacto">Hablar con ventas</RouterLink>
+          <button type="button" @click="openCart">Abrir mi requerimiento</button>
+          <button type="button" @click="openManualRequest()">Agregar producto especial</button>
         </div>
       </div>
     </section>
@@ -155,7 +173,7 @@ import { useQuoteCart } from '@/composables/useQuoteCart'
 import { getProductSlug } from '@/utils/productSlug'
 
 const route = useRoute()
-const { addItem, openCart } = useQuoteCart()
+const { addItem, openCart, openManualRequest } = useQuoteCart()
 
 const searchQuery = ref('')
 const selectedCategory = ref('all')
@@ -222,7 +240,26 @@ const activeFiltersLabel = computed(() => {
 const resultsTitle = computed(() => {
   if (selectedProtectionType.value !== 'all') return getProtectionType(selectedProtectionType.value)?.label ?? 'Productos disponibles'
   if (selectedBrand.value !== 'all') return `Productos ${catalogBrandFilters.find((brand) => brand.id === selectedBrand.value)?.name ?? ''}`
-  return 'Productos disponibles'
+  return 'Catálogo referencial'
+})
+
+let zeroResultTimer: number | undefined
+watch([searchQuery, filteredProducts], ([query, products]) => {
+  if (zeroResultTimer) window.clearTimeout(zeroResultTimer)
+  const normalized = String(query).trim()
+  if (normalized.length < 3 || products.length) return
+  zeroResultTimer = window.setTimeout(() => {
+    try {
+      const storageKey = 'segurimax-zero-result-searches'
+      const saved = JSON.parse(window.localStorage.getItem(storageKey) || '[]') as Array<{ query: string; date: string }>
+      if (!saved.some((entry) => entry.query.toLocaleLowerCase('es') === normalized.toLocaleLowerCase('es'))) {
+        saved.push({ query: normalized, date: new Date().toISOString() })
+        window.localStorage.setItem(storageKey, JSON.stringify(saved.slice(-50)))
+      }
+    } catch {
+      // La búsqueda continúa funcionando aunque el navegador bloquee localStorage.
+    }
+  }, 900)
 })
 
 function getProductClassification(product: CatalogProduct) {
@@ -260,11 +297,21 @@ function addProductToQuote(product: CatalogProduct) {
 .productos-hero { position: relative; overflow: hidden; padding: clamp(3.5rem, 7vw, 6.5rem) 0; color: #fff; background: var(--brand-forest-deep); }
 .productos-hero__inner { position: relative; z-index: 1; }
 .productos-hero h1 { max-width: 850px; margin: .25rem 0 .75rem; color: #fff; font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 620; letter-spacing: -.03em; line-height: 1; }
-.productos-hero p:last-child { max-width: 560px; margin: 0; color: rgba(255,255,255,.7); font-size: 1.05rem; }
+.productos-hero__inner > p:not(.eyebrow) { max-width: 680px; margin: 0; color: rgba(255,255,255,.7); font-size: 1.05rem; }
+.productos-hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }
+.productos-hero__actions a, .productos-hero__actions button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: .7rem 1rem; border: 1px solid rgba(255,255,255,.42); border-radius: 7px; color: #fff; background: transparent; font-weight: 850; text-decoration: none; }
+.productos-hero__actions button { border-color: var(--brand-yellow); color: var(--brand-ink); background: var(--brand-yellow); }
 .hero-grid-overlay { position: absolute; inset: 0; opacity: .22; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(90deg, transparent 20%, #000); }
 .eyebrow { margin: 0; color: var(--brand-yellow); font-size: .72rem; font-weight: 850; letter-spacing: .2em; }
 .eyebrow--green { color: var(--brand-green); }
-.productos-controls { position: relative; z-index: 3; margin-top: -1.6rem; }
+.special-request { color: #fff; background: var(--brand-green); }
+.special-request__inner { min-height: 106px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; padding-top: 1rem; padding-bottom: 1rem; }
+.special-request__icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; color: var(--brand-ink); background: var(--brand-yellow); }
+.special-request strong { font-size: 1rem; }
+.special-request p { margin: .2rem 0 0; color: rgba(255,255,255,.72); font-size: .84rem; }
+.special-request button { min-height: 44px; padding: .65rem .9rem; border: 1px solid rgba(255,255,255,.4); border-radius: 7px; color: #fff; background: transparent; font-weight: 850; white-space: nowrap; }
+.special-request button:hover { color: var(--brand-ink); background: var(--brand-yellow); border-color: var(--brand-yellow); }
+.productos-controls { position: relative; z-index: 3; padding-top: 1.5rem; }
 .filters-card { display: grid; grid-template-columns: minmax(230px, 2fr) repeat(5, minmax(128px, 1fr)); gap: .8rem; padding: 1.15rem; border: 1px solid rgba(8,43,29,.1); border-radius: 12px; background: #fff; box-shadow: 0 18px 50px rgba(8,43,29,.1); }
 .filter-field { display: grid; align-content: end; gap: .45rem; min-width: 0; }
 .filter-field > span:first-child { color: #66736b; font-size: .72rem; font-weight: 800; }
@@ -307,6 +354,8 @@ function addProductToQuote(product: CatalogProduct) {
 .empty-state h2 { margin: .5rem 0 0; color: var(--brand-ink); font-family: var(--font-heading); font-size: 1.5rem; }
 .empty-state p { margin: 0; color: #68736c; }
 .empty-state button { min-height: 48px; margin-top: .8rem; padding: .7rem 1.2rem; border: 0; border-radius: 7px; color: #fff; background: var(--brand-forest); font-weight: 850; }
+.empty-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .65rem; }
+.empty-state .empty-secondary { color: var(--brand-ink); background: var(--brand-yellow); }
 .productos-cta { padding: 3.5rem 0; color: #fff; background: var(--brand-forest-deep); }
 .productos-cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .productos-cta h2 { margin: .35rem 0 0; color: #fff; font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 620; }
@@ -321,7 +370,9 @@ function addProductToQuote(product: CatalogProduct) {
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 767.98px) {
-  .productos-controls { margin-top: 0; padding-top: 1rem; }
+  .special-request__inner { grid-template-columns: auto 1fr; }
+  .special-request button { grid-column: 2; justify-self: start; }
+  .productos-controls { padding-top: 1rem; }
   .filters-card { grid-template-columns: 1fr 1fr; padding: 1rem; box-shadow: none; }
   .filter-field--search { grid-column: 1 / -1; }
   .results-header, .productos-cta__inner { align-items: flex-start; flex-direction: column; }
@@ -333,5 +384,9 @@ function addProductToQuote(product: CatalogProduct) {
   .filter-field--search { grid-column: auto; }
   .product-card__media { height: 225px; }
   .productos-cta__actions { width: 100%; flex-direction: column; }
+  .productos-hero__actions, .productos-hero__actions a, .productos-hero__actions button { width: 100%; }
+  .special-request__inner { grid-template-columns: 1fr; padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  .special-request__icon { display: none; }
+  .special-request button { grid-column: 1; width: 100%; }
 }
 </style>

@@ -5,7 +5,7 @@
         v-if="itemCount > 0"
         class="quote-cart-bar"
         type="button"
-        :aria-label="`Ver mi cotización: ${items.length} productos, ${itemCount} unidades`"
+        :aria-label="`Ver mi requerimiento: ${items.length} partidas, ${itemCount} unidades`"
         @click="openCart"
       >
         <span class="quote-cart-bar__icon" aria-hidden="true">
@@ -17,7 +17,7 @@
           <small>{{ summary }}</small>
         </span>
         <span class="quote-cart-bar__action">
-          Ver cotización
+          Ver requerimiento
           <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </span>
       </button>
@@ -31,9 +31,9 @@ import { useQuoteCart } from '@/composables/useQuoteCart'
 
 const { items, itemCount, lastAddedName, openCart } = useQuoteCart()
 
-const displayName = computed(() => lastAddedName.value || items.value.at(-1)?.name || 'Mi cotización')
+const displayName = computed(() => lastAddedName.value || items.value.at(-1)?.name || 'Mi requerimiento')
 const summary = computed(() => {
-  const products = `${items.value.length} ${items.value.length === 1 ? 'producto' : 'productos'}`
+  const products = `${items.value.length} ${items.value.length === 1 ? 'partida' : 'partidas'}`
   const units = `${itemCount.value} ${itemCount.value === 1 ? 'unidad' : 'unidades'}`
   return `${products} · ${units}`
 })

@@ -13,17 +13,31 @@ const assetFiles = readdirSync(assetsDir)
 const staticPages = [
   {
     path: '/',
-    title: 'Segurimax Perú | EPP y seguridad industrial para empresas',
-    description: 'Cotiza equipos de protección personal, ropa industrial, señalización y suministros para empresas en Perú.',
-    heading: 'EPP y seguridad industrial para empresas',
-    body: 'Catálogo multimarca y atención directa para consolidar tu requerimiento empresarial.',
+    title: 'Abastecimiento industrial y EPP para empresas | Segurimax Perú',
+    description: 'Gestionamos EPP, ropa de trabajo, herramientas, equipos e insumos industriales. Envía tu requerimiento y consolida tu compra con Segurimax Perú.',
+    heading: 'Requerimientos de abastecimiento para empresas',
+    body: 'Búsqueda de productos, alternativas y compras consolidadas para operaciones empresariales.',
+  },
+  {
+    path: '/soluciones',
+    title: 'Soluciones de abastecimiento industrial | Segurimax Perú',
+    description: 'Procura de EPP, ropa, herramientas, equipos, insumos operativos y productos industriales bajo pedido para empresas en Perú.',
+    heading: 'Soluciones de abastecimiento industrial',
+    body: 'Seguridad industrial, herramientas, equipos, insumos y búsqueda de productos especiales.',
   },
   {
     path: '/productos',
-    title: 'Catálogo de EPP y seguridad industrial | Segurimax Perú',
-    description: 'Explora cascos, guantes, respiradores, lentes, protección auditiva, trabajo en altura, ropa industrial y equipos de oxicorte.',
-    heading: 'Catálogo de productos Segurimax',
-    body: 'Equipos de protección personal, seguridad industrial, ropa de trabajo y suministros para empresas.',
+    title: 'Abastecimiento industrial, EPP y equipos para empresas | Segurimax Perú',
+    description: 'Explora el catálogo referencial de Segurimax o solicita productos industriales, EPP, herramientas e insumos especiales bajo pedido.',
+    heading: 'Productos y soluciones para tu operación',
+    body: 'Catálogo referencial y gestión de productos especiales bajo pedido.',
+  },
+  {
+    path: '/como-trabajamos',
+    title: 'Cómo gestionamos requerimientos empresariales | Segurimax Perú',
+    description: 'Conoce el proceso de Segurimax para recibir, validar, buscar alternativas, consolidar propuestas y coordinar requerimientos B2B.',
+    heading: 'Cómo trabajamos los requerimientos B2B',
+    body: 'Del requerimiento inicial a una propuesta consolidada y coordinada.',
   },
   {
     path: '/empresa',
@@ -41,10 +55,10 @@ const staticPages = [
   },
   {
     path: '/contacto',
-    title: 'Contacto y cotizaciones | Segurimax Perú',
-    description: 'Solicita una cotización de EPP, seguridad industrial y suministros empresariales por WhatsApp o correo.',
-    heading: 'Cotiza con Segurimax Perú',
-    body: 'Envíanos tu lista por WhatsApp o correo para recibir atención comercial.',
+    title: 'Enviar requerimiento de abastecimiento | Segurimax Perú',
+    description: 'Solicita EPP, herramientas, equipos, insumos industriales o productos especiales por WhatsApp o correo con Segurimax Perú.',
+    heading: 'Envía tu requerimiento a Segurimax Perú',
+    body: 'Comparte una lista, fotografía, código o ficha técnica para iniciar la gestión.',
   },
 ]
 
