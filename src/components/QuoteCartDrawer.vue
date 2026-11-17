@@ -196,7 +196,7 @@ import { useRouter } from 'vue-router'
 import { useQuoteCart } from '@/composables/useQuoteCart'
 
 const WHATSAPP_PHONE = '51996665221'
-const EMAIL_TO = 'ventas@segurimax-peru.com'
+const EMAIL_TO = 'segurimaxperu1@gmail.com'
 const router = useRouter()
 const { items, isOpen, itemCount, manualDraftSeed, manualRequestNonce, addItem, removeItem, updateQuantity, clearItems, closeCart, buildQuoteText } = useQuoteCart()
 const drawer = ref<HTMLElement | null>(null)

@@ -23,7 +23,7 @@
           <div class="direct-contact">
             <span>Atención directa</span>
             <a href="tel:+51996665221">+51 996 665 221</a>
-            <a href="mailto:ventas@segurimax-peru.com">ventas@segurimax-peru.com</a>
+            <a href="mailto:segurimaxperu1@gmail.com">segurimaxperu1@gmail.com</a>
           </div>
         </aside>
 
@@ -77,7 +77,7 @@ import { reactive, ref } from 'vue'
 import { useQuoteCart } from '@/composables/useQuoteCart'
 
 const WHATSAPP_PHONE = '51996665221'
-const EMAIL_TO = 'ventas@segurimax-peru.com'
+const EMAIL_TO = 'segurimaxperu1@gmail.com'
 const { openCart } = useQuoteCart()
 const fileNames = ref<string[]>([])
 const formError = ref('')

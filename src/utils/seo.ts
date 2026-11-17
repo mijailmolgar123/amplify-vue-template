@@ -59,6 +59,7 @@ export function applySeo(config: SeoConfig) {
   upsertMeta('name', 'twitter:description', config.description)
   upsertMeta('name', 'twitter:image', imageUrl)
 
+  document.head.querySelector('script[data-seo-prerender]')?.remove()
   document.head.querySelector('script[data-seo-jsonld]')?.remove()
   if (config.structuredData) {
     const script = document.createElement('script')

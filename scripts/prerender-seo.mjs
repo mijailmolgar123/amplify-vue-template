@@ -16,7 +16,7 @@ const staticPages = [
     title: 'Abastecimiento industrial y EPP para empresas | Segurimax Perú',
     description: 'Gestionamos EPP, ropa de trabajo, herramientas, equipos e insumos industriales. Envía tu requerimiento y consolida tu compra con Segurimax Perú.',
     heading: 'Requerimientos de abastecimiento para empresas',
-    body: 'Búsqueda de productos, alternativas y compras consolidadas para operaciones empresariales.',
+    body: 'Segurimax Perú gestiona EPP, ropa de trabajo, herramientas, equipos e insumos industriales para empresas. Recibimos requerimientos, buscamos alternativas y consolidamos propuestas.',
   },
   {
     path: '/soluciones',
@@ -37,7 +37,7 @@ const staticPages = [
     title: 'Cómo gestionamos requerimientos empresariales | Segurimax Perú',
     description: 'Conoce el proceso de Segurimax para recibir, validar, buscar alternativas, consolidar propuestas y coordinar requerimientos B2B.',
     heading: 'Cómo trabajamos los requerimientos B2B',
-    body: 'Del requerimiento inicial a una propuesta consolidada y coordinada.',
+    body: 'Recibimos listas, fotografías, códigos o fichas técnicas; validamos las cantidades y especificaciones, buscamos alternativas, consolidamos una propuesta y coordinamos la entrega según las condiciones acordadas.',
   },
   {
     path: '/empresa',
@@ -58,7 +58,8 @@ const staticPages = [
     title: 'Enviar requerimiento de abastecimiento | Segurimax Perú',
     description: 'Solicita EPP, herramientas, equipos, insumos industriales o productos especiales por WhatsApp o correo con Segurimax Perú.',
     heading: 'Envía tu requerimiento a Segurimax Perú',
-    body: 'Comparte una lista, fotografía, código o ficha técnica para iniciar la gestión.',
+    body: 'Comparte una lista, fotografía, código o ficha técnica para iniciar la gestión. Contacta a Segurimax por correo en segurimaxperu1@gmail.com o por teléfono y WhatsApp al +51 996 665 221.',
+    details: '<p><a href="mailto:segurimaxperu1@gmail.com">segurimaxperu1@gmail.com</a> · <a href="tel:+51996665221">+51 996 665 221</a></p>',
   },
 ]
 
@@ -114,7 +115,7 @@ function renderPage({ route, title, description, heading, body, image, jsonLd, d
     : ''
   html = html.replace('</head>', `    ${canonicalTag}\n    ${structuredData}\n  </head>`)
 
-  const visibleContent = `<div id="app"><main data-seo-prerender><nav><a href="/">Inicio</a> · <a href="/productos">Productos</a></nav><article><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(body)}</p>${details}</article></main></div>`
+  const visibleContent = `<div id="app"><main data-seo-prerender><nav><a href="/">Inicio</a> · <a href="/soluciones">Soluciones</a> · <a href="/productos">Productos</a> · <a href="/como-trabajamos">Cómo trabajamos</a> · <a href="/empresa">Empresa</a> · <a href="/contacto">Contacto</a></nav><article><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(body)}</p>${details}</article></main></div>`
   html = html.replace('<div id="app"></div>', visibleContent)
   return html
 }

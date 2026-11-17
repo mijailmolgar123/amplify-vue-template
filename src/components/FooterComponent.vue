@@ -27,7 +27,7 @@
       <div class="footer-contact">
         <h2>Ventas</h2>
         <a href="tel:+51996665221"><i class="fa-solid fa-phone" aria-hidden="true"></i> +51 996 665 221</a>
-        <a href="mailto:ventas@segurimax-peru.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> ventas@segurimax-peru.com</a>
+        <a href="mailto:segurimaxperu1@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> segurimaxperu1@gmail.com</a>
         <a href="https://wa.me/51996665221" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp ventas</a>
       </div>
     </div>
